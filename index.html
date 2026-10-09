@@ -42,7 +42,6 @@
       position: relative;
     }
 
-    /* ===== GRID LATAR BELAKANG ===== */
     body::before {
       content: '';
       position: fixed;
@@ -65,7 +64,6 @@
       100% { transform: translate(50px, 50px); }
     }
 
-    /* ===== KANVAS PARTIKEL ===== */
     #partikel {
       position: fixed;
       top: 0;
@@ -485,7 +483,6 @@
       font-size: 0.8rem;
     }
 
-    /* Modal */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -577,7 +574,6 @@
       border: 1px solid rgba(0, 240, 255, 0.15);
     }
 
-    /* Tombol Sound */
     .sound-toggle {
       position: fixed;
       bottom: 1.5rem;
@@ -612,7 +608,6 @@
   </style>
 </head>
 <body>
-  <!-- Partikel Latar Belakang -->
   <canvas id="partikel"></canvas>
 
   <div class="container">
@@ -621,7 +616,6 @@
       <p class="sub-logo" id="typingText"></p>
     </header>
 
-    <!-- Session Info -->
     <div class="session-box">
       <div class="session-item"><strong>📍 Negara:</strong> <span id="info-negara">Memuat...</span></div>
       <div class="session-item"><strong>💻 Perangkat:</strong> <span id="info-perangkat">Memuat...</span></div>
@@ -632,7 +626,6 @@
       </div>
     </div>
 
-    <!-- Kategori Tab -->
     <div class="tabs" id="tabs">
       <button class="tab aktif" data-filter="semua">Semua</button>
       <button class="tab" data-filter="downloader">Downloader</button>
@@ -694,8 +687,8 @@
         <h3>MOONSTAR Anime Discover</h3>
         <p>Cari gambar anime, artis, dan GIF reaksi dari sumber aman</p>
       </button>
-      <!-- Tool 8 -->
-      <button class="tool-card" data-kategori="downloader" data-nama="Cari Preset AM" data-desc="Cari link preset Alight Motion dari deskripsi & komentar TikTok">
+      <!-- Tool 8 — AM Preset Finder (Sudah Terhubung!) -->
+      <button class="tool-card" data-kategori="downloader" data-nama="Cari Preset AM" data-desc="Cari link preset Alight Motion dari deskripsi & komentar TikTok" data-link="https://webfinderpresetam.vercel.app/">
         <span class="tool-tag">AM</span>
         <span class="tool-badge badge-siap">Siap</span>
         <h3>Cari Preset AM</h3>
@@ -791,10 +784,8 @@
     </footer>
   </div>
 
-  <!-- Tombol Sound Toggle -->
   <button class="sound-toggle" id="soundBtn" title="Efek Suara">🔇</button>
 
-  <!-- Modal Tool -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
       <h3 id="modalJudul">Nama Tool</h3>
@@ -808,7 +799,7 @@
   </div>
 
   <script>
-    // ===== KONFIGURASI WHATSAPP =====
+    // ===== KONFIGURASI =====
     const NOMOR_WA = '62882020654074';
 
     // ===== ANIMASI KETIK TEKS =====
@@ -837,9 +828,7 @@
     }
 
     class Partikel {
-      constructor() {
-        this.reset();
-      }
+      constructor() { this.reset(); }
       reset() {
         this.x = Math.random() * kanvas.width;
         this.y = Math.random() * kanvas.height;
@@ -900,7 +889,6 @@
     // ===== EFEK SUARA =====
     let suaraAktif = false;
     const tombolSuara = document.getElementById('soundBtn');
-
     tombolSuara.addEventListener('click', () => {
       suaraAktif = !suaraAktif;
       tombolSuara.textContent = suaraAktif ? '🔊' : '🔇';
@@ -923,13 +911,10 @@
       } catch (e) {}
     }
 
-    // ===== Deteksi Info Sesi =====
+    // ===== DETEKSI INFO =====
     function deteksiPerangkat() {
       const ua = navigator.userAgent;
-      if (/Mobi|Android|iPhone|iPad|iPod/i.test(ua)) {
-        if (/iPad|Tablet/i.test(ua)) return 'Tablet';
-        return 'Mobile';
-      }
+      if (/Mobi|Android|iPhone|iPad|iPod/i.test(ua)) return /iPad|Tablet/i.test(ua) ? 'Tablet' : 'Mobile';
       return 'Desktop';
     }
 
@@ -959,16 +944,14 @@
         if (tz.includes('Dubai')) return '🇦🇪 UAE';
         const kota = tz.split('/').pop().replace(/_/g, ' ');
         return `🌍 ${kota}`;
-      } catch (e) {
-        return '🌍 Tidak diketahui';
-      }
+      } catch (e) { return '🌍 Tidak diketahui'; }
     }
 
     document.getElementById('info-perangkat').textContent = deteksiPerangkat();
     document.getElementById('info-browser').textContent = deteksiBrowser();
     document.getElementById('info-negara').textContent = deteksiNegara();
 
-    // ===== Fungsi Tab Filter =====
+    // ===== TAB FILTER =====
     const tabs = document.querySelectorAll('.tab');
     const kartuTools = document.querySelectorAll('.tool-card');
 
@@ -979,16 +962,13 @@
         tab.classList.add('aktif');
         const filter = tab.dataset.filter;
         kartuTools.forEach(kartu => {
-          if (filter === 'semua' || kartu.dataset.kategori === filter) {
-            kartu.classList.remove('hidden');
-          } else {
-            kartu.classList.add('hidden');
-          }
+          if (filter === 'semua' || kartu.dataset.kategori === filter) kartu.classList.remove('hidden');
+          else kartu.classList.add('hidden');
         });
       });
     });
 
-    // ===== Modal Tool =====
+    // ===== MODAL & BUKA LINK TOOL =====
     const modalOverlay = document.getElementById('modalOverlay');
     const modalJudul = document.getElementById('modalJudul');
     const modalDeskripsi = document.getElementById('modalDeskripsi');
@@ -1002,6 +982,7 @@
         const nama = kartu.dataset.nama;
         const desc = kartu.dataset.desc;
         const kategori = kartu.dataset.kategori;
+        const link = kartu.dataset.link || null;
         const badge = kartu.querySelector('.tool-badge');
         const status = badge ? badge.textContent : '-';
 
@@ -1010,18 +991,26 @@
         modalInfo.innerHTML = `
           <strong>Kategori:</strong> ${kategori.charAt(0).toUpperCase() + kategori.slice(1)}<br>
           <strong>Status:</strong> ${status}
+          ${link ? `<br><strong>Link:</strong> ✅ Terhubung` : ''}
         `;
 
         if (status === 'VVIP') {
           modalBuka.textContent = '⭐ Beli VVIP';
           modalBuka.onclick = () => {
             mainkanSuaraKlik();
-            const pesan = encodeURIComponent(
-              `Halo Admin MOONSTAR, saya mau beli VVIP untuk membuka tool: *${nama}*\n\nMohon info pembayaran ya. Terima kasih!`
-            );
+            const pesan = encodeURIComponent(`Halo Admin MOONSTAR, saya mau beli VVIP untuk membuka tool: *${nama}*\n\nMohon info pembayaran ya. Terima kasih!`);
             window.open(`https://wa.me/${NOMOR_WA}?text=${pesan}`, '_blank');
           };
+        } else if (link) {
+          // Tool dengan link langsung — buka di tab baru
+          modalBuka.textContent = '🚀 Buka Tool';
+          modalBuka.onclick = () => {
+            mainkanSuaraKlik();
+            window.open(link, '_blank');
+            tutupModal();
+          };
         } else {
+          // Tool biasa yang belum ada link
           modalBuka.textContent = '🚀 Buka Tool';
           modalBuka.onclick = () => {
             mainkanSuaraKlik();
@@ -1038,19 +1027,13 @@
     }
 
     modalTutup.addEventListener('click', tutupModal);
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) tutupModal();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') tutupModal();
-    });
+    modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) tutupModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') tutupModal(); });
 
-    // ===== Tombol Beli VVIP =====
+    // ===== TOMBOL BELI VVIP =====
     document.getElementById('btnBeli').addEventListener('click', () => {
       mainkanSuaraKlik();
-      const pesan = encodeURIComponent(
-        'Halo Admin MOONSTAR, saya ingin berlangganan *VVIP MOONSTAR* (Rp20.000 / 35 Hari).\n\nMohon info cara pembayaran & aktivasi akun ya. Terima kasih! 🙏'
-      );
+      const pesan = encodeURIComponent('Halo Admin MOONSTAR, saya ingin berlangganan *VVIP MOONSTAR* (Rp20.000 / 35 Hari).\n\nMohon info cara pembayaran & aktivasi akun ya. Terima kasih! 🙏');
       window.open(`https://wa.me/${NOMOR_WA}?text=${pesan}`, '_blank');
     });
   </script>
