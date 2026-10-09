@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Tools — MOONSTAR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', 'Segoe UI', system-ui, sans-serif;
+    }
+
+    :root {
+      --bg: #050714;
+      --bg-deep: #02030a;
+      --card: #0f1229;
+      --card-hover: #1a1f42;
+      --neon-biru: #00f0ff;
+      --neon-ungu: #a855f7;
+      --neon-pink: #ff2eb6;
+      --neon-hijau: #00ffb3;
+      --neon-kuning: #ffd60a;
+      --teks: #e0e7ff;
+      --abu: #8892b0;
+      --garis: rgba(0, 240, 255, 0.15);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--teks);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at top, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at bottom-left, rgba(0, 240, 255, 0.06) 0%, transparent 50%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ===== GRID LATAR BELAKANG ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(var(--garis) 1px, transparent 1px),
+        linear-gradient(90deg, var(--garis) 1px, transparent 1px);
+      background-size: 50px 50px;
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: 0;
+      animation: gridBergerak 20s linear infinite;
+    }
+
+    @keyframes gridBergerak {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* ===== KANVAS PARTIKEL ===== */
+    #partikel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--neon-biru), var(--neon-ungu), var(--neon-pink), var(--neon-biru));
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+      animation: gradientMove 4s ease infinite;
+      text-shadow: 0 0 40px rgba(0, 240, 255, 0.2);
+      letter-spacing: 2px;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+      100% { background-position: 0% center; }
+    }
+
+    .sub-logo {
+      color: var(--abu);
+      font-size: 0.9rem;
+      min-height: 1.4rem;
+      border-right: 2px solid var(--neon-biru);
+      padding-right: 8px;
+      display: inline-block;
+      animation: kedipKursor 0.8s step-end infinite;
+    }
+
+    @keyframes kedipKursor {
+      0%, 100% { border-color: var(--neon-biru); }
+      50% { border-color: transparent; }
+    }
+
+    .session-box {
+      background: linear-gradient(135deg, rgba(15, 18, 41, 0.85), rgba(26, 31, 66, 0.6));
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      box-shadow: 
+        0 0 20px rgba(0, 240, 255, 0.05),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .session-box::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(0, 240, 255, 0.03), transparent);
+      transform: rotate(45deg);
+      animation: shine 6s linear infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
+    }
+
+    .session-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .session-item strong {
+      color: var(--neon-biru);
+    }
+
+    .status-online {
+      width: 10px;
+      height: 10px;
+      background: var(--neon-hijau);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--neon-hijau), 0 0 16px var(--neon-hijau), 0 0 24px var(--neon-hijau);
+      animation: kedip 2s infinite;
+    }
+
+    @keyframes kedip {
+      0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--neon-hijau), 0 0 16px var(--neon-hijau); }
+      50% { opacity: 0.3; box-shadow: 0 0 4px var(--neon-hijau); }
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .tab {
+      padding: 0.6rem 1.1rem;
+      background: rgba(15, 18, 41, 0.6);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--abu);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tab::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.15), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .tab:hover::before, .tab.aktif::before {
+      left: 100%;
+    }
+
+    .tab.aktif, .tab:hover {
+      border-color: var(--neon-biru);
+      color: var(--neon-biru);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3), inset 0 0 8px rgba(0, 240, 255, 0.08);
+      background: rgba(0, 240, 255, 0.06);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin: 2rem 0 1rem;
+      color: white;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
+
+    .tool-card {
+      background: linear-gradient(135deg, rgba(15, 18, 41, 0.7), rgba(26, 31, 66, 0.4));
+      border-radius: 12px;
+      padding: 1.3rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 240, 255, 0.12);
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+      font-family: inherit;
+      width: 100%;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(6px);
+    }
+
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle at top right, rgba(0, 240, 255, 0.06), transparent 60%);
+      pointer-events: none;
+    }
+
+    .tool-card:hover {
+      background: rgba(26, 31, 66, 0.7);
+      transform: translateY(-6px) scale(1.01);
+      border-color: var(--neon-ungu);
+      box-shadow: 
+        0 12px 40px rgba(168, 85, 247, 0.15),
+        0 0 0 1px rgba(168, 85, 247, 0.2),
+        0 0 30px rgba(0, 240, 255, 0.05);
+    }
+
+    .tool-card:active {
+      transform: translateY(-2px) scale(0.985);
+    }
+
+    .tool-card.hidden {
+      display: none;
+    }
+
+    .tool-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .badge-siap { 
+      background: rgba(0, 255, 179, 0.1); 
+      color: var(--neon-hijau); 
+      border: 1px solid rgba(0, 255, 179, 0.2);
+    }
+    .badge-vvip { 
+      background: rgba(168, 85, 247, 0.1); 
+      color: var(--neon-ungu); 
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      box-shadow: 0 0 8px rgba(168, 85, 247, 0.15);
+      animation: glowVVIP 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowVVIP {
+      0% { box-shadow: 0 0 4px rgba(168, 85, 247, 0.1); }
+      100% { box-shadow: 0 0 12px rgba(168, 85, 247, 0.3); }
+    }
+
+    .badge-new { 
+      background: rgba(255, 214, 10, 0.1); 
+      color: var(--neon-kuning); 
+      border: 1px solid rgba(255, 214, 10, 0.2);
+      animation: pulseNew 1.5s infinite;
+    }
+
+    @keyframes pulseNew {
+      0%, 100% { box-shadow: 0 0 4px rgba(255, 214, 10, 0.15); }
+      50% { box-shadow: 0 0 14px rgba(255, 214, 10, 0.35); }
+    }
+
+    .tool-tag {
+      font-size: 0.65rem;
+      color: var(--neon-biru);
+      background: rgba(0, 240, 255, 0.08);
+      padding: 0.12rem 0.45rem;
+      border-radius: 4px;
+      margin-right: 0.4rem;
+      border: 1px solid rgba(0, 240, 255, 0.1);
+    }
+
+    .tool-card h3 {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      color: white;
+    }
+
+    .tool-card p {
+      font-size: 0.8rem;
+      color: var(--abu);
+      line-height: 1.5;
+    }
+
+    .vvip-section {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(0, 240, 255, 0.04));
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vvip-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .vvip-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .vvip-hdr h2 { margin: 0; }
+
+    .vvip-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--neon-kuning);
+      text-shadow: 0 0 15px rgba(255, 214, 10, 0.25);
+      animation: hargaGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes hargaGlow {
+      0% { text-shadow: 0 0 5px rgba(255, 214, 10, 0.2); }
+      100% { text-shadow: 0 0 20px rgba(255, 214, 10, 0.4); }
+    }
+
+    .vvip-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .vvip-feat {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(0, 240, 255, 0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .vvip-feat:hover {
+      border-color: var(--neon-ungu);
+      background: rgba(168, 85, 247, 0.05);
+      transform: translateX(5px);
+    }
+
+    .vvip-feat strong { color: white; display: block; margin-bottom: 0.3rem; font-size: 0.9rem; }
+    .vvip-feat span { font-size: 0.8rem; color: var(--abu); }
+
+    .btn-wa {
+      display: inline-block;
+      background: linear-gradient(90deg, #00d887, #00b894);
+      color: white;
+      padding: 0.75rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: inherit;
+      box-shadow: 0 0 15px rgba(0, 216, 135, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-wa::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-wa:hover::after {
+      left: 100%;
+    }
+
+    .btn-wa:hover { 
+      transform: scale(1.05); 
+      box-shadow: 0 0 25px rgba(0, 216, 135, 0.4);
+    }
+
+    .faq h3 {
+      font-size: 1rem;
+      margin: 1.2rem 0 0.5rem;
+      color: white;
+    }
+
+    .faq p {
+      font-size: 0.9rem;
+      color: var(--abu);
+      max-width: 700px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 240, 255, 0.1);
+      color: var(--abu);
+      font-size: 0.8rem;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 3, 10, 0.85);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-overlay.aktif {
+      display: flex;
+    }
+
+    .modal {
+      background: linear-gradient(135deg, rgba(15, 18, 41, 0.95), rgba(26, 31, 66, 0.9));
+      border-radius: 14px;
+      padding: 1.75rem;
+      max-width: 480px;
+      width: 100%;
+      border: 1px solid var(--neon-ungu);
+      animation: muncul 0.3s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 
+        0 0 50px rgba(168, 85, 247, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+    }
+
+    @keyframes muncul {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal h3 {
+      color: white;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .modal p {
+      color: var(--abu);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-info {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(0, 240, 255, 0.1);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      color: var(--abu);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-modal {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      min-width: 120px;
+    }
+
+    .btn-modal:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--neon-biru), var(--neon-ungu));
+      color: white;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+
+    .btn-secondary {
+      background: rgba(30, 34, 68, 0.8);
+      color: var(--teks);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+    }
+
+    /* Tombol Sound */
+    .sound-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: rgba(15, 18, 41, 0.8);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      color: var(--neon-biru);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      z-index: 100;
+      transition: all 0.3s;
+      backdrop-filter: blur(8px);
+    }
+
+    .sound-toggle:hover {
+      border-color: var(--neon-biru);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      .tools-grid { grid-template-columns: 1fr; }
+      .session-box { justify-content: flex-start; }
+      .vvip-hdr { flex-direction: column; align-items: flex-start; }
+      .logo { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Partikel Latar Belakang -->
+  <canvas id="partikel"></canvas>
+
+  <div class="container">
+    <header>
+      <h1 class="logo">All Tools — MOONSTAR</h1>
+      <p class="sub-logo" id="typingText"></p>
+    </header>
+
+    <!-- Session Info -->
+    <div class="session-box">
+      <div class="session-item"><strong>📍 Negara:</strong> <span id="info-negara">Memuat...</span></div>
+      <div class="session-item"><strong>💻 Perangkat:</strong> <span id="info-perangkat">Memuat...</span></div>
+      <div class="session-item"><strong>🌐 Browser:</strong> <span id="info-browser">Memuat...</span></div>
+      <div class="session-item">
+        <span class="status-online"></span>
+        <strong>Status:</strong> Online · 100%
+      </div>
+    </div>
+
+    <!-- Kategori Tab -->
+    <div class="tabs" id="tabs">
+      <button class="tab aktif" data-filter="semua">Semua</button>
+      <button class="tab" data-filter="downloader">Downloader</button>
+      <button class="tab" data-filter="maker">Maker</button>
+      <button class="tab" data-filter="tools">Tools</button>
+      <button class="tab" data-filter="visual">Visual</button>
+      <button class="tab" data-filter="vault">Vault</button>
+      <button class="tab" data-filter="external">External</button>
+    </div>
+
+    <h2>🛠️ Katalog Tools</h2>
+    <div class="tools-grid" id="toolsGrid">
+      <!-- Tool 1 -->
+      <button class="tool-card" data-kategori="downloader" data-nama="Baca Komik Full" data-desc="Manga, manhwa, manhua + pembaca bawaan">
+        <span class="tool-tag">MANGA</span>
+        <span class="tool-badge badge-siap">Siap</span>
+        <h3>Baca Komik Full</h3>
+        <p>Manga, manhwa, manhua + pembaca bawaan</p>
+      </button>
+      <!-- Tool 2 -->
+      <button class="tool-card" data-kategori="maker" data-nama="MOONSTAR Avatar Studio" data-desc="Buat avatar SVG unik dengan puluhan gaya & editor visual">
+        <span class="tool-tag">SVG</span>
+        <span class="tool-badge badge-siap">Siap</span>
+        <h3>MOONSTAR Avatar Studio</h3>
+        <p>Buat avatar SVG unik dengan puluhan gaya & editor visual</p>
+      </button>
+      <!-- Tool 3 -->
+      <button class="tool-card" data-kategori="maker" data-nama="HTML → MP4 Renderer" data-desc="Ubah HTML/WebGL/Three.js jadi video MP4 langsung di perangkat">
+        <span class="tool-tag">VIDEO</span>
+        <span class="tool-badge badge-siap">Siap</span>
+        <h3>HTML → MP4 Renderer</h3>
+        <p>Ubah HTML/WebGL/Three.js jadi video MP4 langsung di perangkat</p>
+      </button>
+      <!-- Tool 4 -->
+      <button class="tool-card" data-kategori="visual" data-nama="MOONSTAR Image Vectorizer" data-desc="Ubah PNG/JPG menjadi SVG secara privat langsung di browser">
+        <span class="tool-tag">VECTOR</span>
+        <span class="tool-badge badge-vvip">VVIP</span>
+        <h3>MOONSTAR Image Vectorizer</h3>
+        <p>Ubah PNG/JPG menjadi SVG secara privat langsung di browser</p>
+      </button>
+      <!-- Tool 5 -->
+      <button class="tool-card" data-kategori="maker" data-nama="SVG → XML Converter" data-desc="Konversi SVG ke XML Alight Motion dengan Anime Vector Atelier">
+        <span class="tool-tag">AM</span>
+        <span class="tool-badge badge-vvip">VVIP</span>
+        <h3>SVG → XML Converter</h3>
+        <p>Konversi SVG ke XML Alight Motion dengan Anime Vector Atelier</p>
+      </button>
+      <!-- Tool 6 -->
+      <button class="tool-card" data-kategori="tools" data-nama="Prompt Generator AI" data-desc="Analisis gambar dengan Gemini Vision → jadi prompt profesional">
+        <span class="tool-tag">AI</span>
+        <span class="tool-badge badge-siap">Siap</span>
+        <h3>Prompt Generator AI</h3>
+        <p>Analisis gambar dengan Gemini Vision → jadi prompt profesional</p>
+      </button>
+      <!-- Tool 7 -->
+      <button class="tool-card" data-kategori="vault" data-nama="MOONSTAR Anime Discover" data-desc="Cari gambar anime, artis, dan GIF reaksi dari sumber aman">
+        <span class="tool-tag">ANIME</span>
+        <span class="tool-badge badge-new">NEW</span>
+        <h3>MOONSTAR Anime Discover</h3>
+        <p>Cari gambar anime, artis, dan GIF reaksi dari sumber aman</p>
+      </button>
+      <!-- Tool 8 -->
+      <button class="tool-card" data-kategori="downloader" data-nama="Cari Preset AM" data-desc="Cari link preset Alight Motion dari deskripsi & komentar TikTok">
+        <span class="tool-tag">AM</span>
+        <span class="tool-badge badge-siap">Siap</span>
+        <h3>Cari Preset AM</h3>
+        <p>Cari link preset Alight Motion dari deskripsi & komentar TikTok</p>
+      </button>
+      <!-- Tool 9 -->
+      <button class="tool-card" data-kategori="tools" data-nama="MOONSTAR Multi-AI" data-desc="Chat, gambar, audio — akses banyak AI sekaligus dalam satu tempat">
+        <span class="tool-tag">AI</span>
+        <span class="tool-badge badge-vvip">VVIP</span>
+        <h3>MOONSTAR Multi-AI</h3>
+        <p>Chat, gambar, audio — akses banyak AI sekaligus dalam satu tempat</p>
+      </button>
+      <!-- Tool 10 -->
+      <button class="tool-card" data-kategori="external" data-nama="Safelinku Bypass" data-desc="Dapatkan link asli dari Safelinku secara otomatis">
+        <span class="tool-tag">BYPASS</span>
+        <span class="tool-badge badge-siap">Siap</span>
+        <h3>Safelinku Bypass</h3>
+        <p>Dapatkan link asli dari Safelinku secara otomatis</p>
+      </button>
+      <!-- Tool 11 -->
+      <button class="tool-card" data-kategori="visual" data-nama="MOONSTAR AI Image" data-desc="Buat gambar AI dengan akun Puter — langsung dari browser">
+        <span class="tool-tag">AI</span>
+        <span class="tool-badge badge-siap">Siap</span>
+        <h3>MOONSTAR AI Image</h3>
+        <p>Buat gambar AI dengan akun Puter — langsung dari browser</p>
+      </button>
+      <!-- Tool 12 -->
+      <button class="tool-card" data-kategori="external" data-nama="GenMail — Temp Mail" data-desc="Buat email sementara, cek inbox dengan aman">
+        <span class="tool-tag">MAIL</span>
+        <span class="tool-badge badge-siap">Siap</span>
+        <h3>GenMail — Temp Mail</h3>
+        <p>Buat email sementara, cek inbox dengan aman</p>
+      </button>
+    </div>
+
+    <!-- VVIP Section -->
+    <div class="vvip-section">
+      <div class="vvip-hdr">
+        <h2>⭐ MOONSTAR VVIP — Akses Semua Tool Premium</h2>
+        <div class="vvip-price">Rp20.000 / 35 Hari</div>
+      </div>
+      <p>Aktifkan membership untuk membuka semua tool berlabel VVIP. Selama masa aktif, tool baru otomatis bisa kamu pakai!</p>
+      
+      <div class="vvip-features">
+        <div class="vvip-feat">
+          <strong>🔓 Buka Tool VVIP</strong>
+          <span>Akses semua tool yang ditandai VVIP di katalog</span>
+        </div>
+        <div class="vvip-feat">
+          <strong>🔄 Selalu Aktual</strong>
+          <span>Tool baru otomatis tersedia saat ditambahkan</span>
+        </div>
+        <div class="vvip-feat">
+          <strong>👤 Terhubung Akun</strong>
+          <span>Status mengikuti akun MOONSTAR kamu</span>
+        </div>
+        <div class="vvip-feat">
+          <strong>⚡ Fitur Eksklusif</strong>
+          <span>Akses source premium & fitur prioritas</span>
+        </div>
+      </div>
+
+      <h3 style="margin-top:1.5rem; color:white;">Cara Berlangganan:</h3>
+      <ol style="margin:0.5rem 1.2rem; color:var(--abu); font-size:0.9rem;">
+        <li>Pilih paket VVIP di halaman ini</li>
+        <li>Tekan tombol di bawah → hubungi via WhatsApp</li>
+        <li>Selesaikan pembayaran → akun langsung diaktifkan</li>
+      </ol>
+      
+      <button class="btn-wa" id="btnBeli">💬 Beli via WhatsApp</button>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq">
+      <h2>❓ Pertanyaan yang Sering Ditanyakan</h2>
+      
+      <h3>Apa itu MOONSTAR VVIP?</h3>
+      <p>Membership premium untuk mengakses tool yang berstatus VVIP di katalog.</p>
+      
+      <h3>Berapa lama masa aktifnya?</h3>
+      <p>35 hari sejak diaktifkan. Setelah itu akses VVIP berhenti sampai diperpanjang.</p>
+      
+      <h3>Apakah butuh akun MOONSTAR?</h3>
+      <p>Ya, status VVIP terhubung ke akun yang kamu gunakan untuk login.</p>
+      
+      <h3>Apakah tool baru otomatis masuk?</h3>
+      <p>Ya, selama membership masih aktif dan tool ditandai VVIP di katalog publik.</p>
+    </div>
+
+    <footer>
+      <p>All Tools MOONSTAR — Dibuat dengan 💫 oleh Fahril MOONSTAR</p>
+      <p>Bebas diedit, dimodifikasi, dan dipakai sesuai kebutuhan ✨</p>
+    </footer>
+  </div>
+
+  <!-- Tombol Sound Toggle -->
+  <button class="sound-toggle" id="soundBtn" title="Efek Suara">🔇</button>
+
+  <!-- Modal Tool -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h3 id="modalJudul">Nama Tool</h3>
+      <p id="modalDeskripsi">Deskripsi tool</p>
+      <div class="modal-info" id="modalInfo"></div>
+      <div class="modal-actions">
+        <button class="btn-modal btn-primary" id="modalBuka">🚀 Buka Tool</button>
+        <button class="btn-modal btn-secondary" id="modalTutup">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== KONFIGURASI WHATSAPP =====
+    const NOMOR_WA = '62882020654074';
+
+    // ===== ANIMASI KETIK TEKS =====
+    const teksKetikan = "Developer Fahril MOONSTAR · 12 Tools & 98 Visual Experiments";
+    const elemenTeks = document.getElementById('typingText');
+    let indeksKarakter = 0;
+
+    function ketikTeks() {
+      if (indeksKarakter < teksKetikan.length) {
+        elemenTeks.textContent += teksKetikan.charAt(indeksKarakter);
+        indeksKarakter++;
+        setTimeout(ketikTeks, 60);
+      }
+    }
+    ketikTeks();
+
+    // ===== PARTIKEL LATAR BELAKANG =====
+    const kanvas = document.getElementById('partikel');
+    const ctx = kanvas.getContext('2d');
+    let partikel = [];
+    let animasiAktif = true;
+
+    function aturUkuranKanvas() {
+      kanvas.width = window.innerWidth;
+      kanvas.height = window.innerHeight;
+    }
+
+    class Partikel {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * kanvas.width;
+        this.y = Math.random() * kanvas.height;
+        this.ukuran = Math.random() * 2 + 0.5;
+        this.kecepatanX = (Math.random() - 0.5) * 0.3;
+        this.kecepatanY = (Math.random() - 0.5) * 0.3;
+        this.warna = Math.random() > 0.5 ? 'rgba(0, 240, 255, 0.4)' : 'rgba(168, 85, 247, 0.3)';
+      }
+      update() {
+        this.x += this.kecepatanX;
+        this.y += this.kecepatanY;
+        if (this.x < 0 || this.x > kanvas.width || this.y < 0 || this.y > kanvas.height) this.reset();
+      }
+      gambar() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.ukuran, 0, Math.PI * 2);
+        ctx.fillStyle = this.warna;
+        ctx.fill();
+      }
+    }
+
+    function inisialisasiPartikel(jumlah = 80) {
+      partikel = [];
+      for (let i = 0; i < jumlah; i++) partikel.push(new Partikel());
+    }
+
+    function gambarGaris() {
+      for (let i = 0; i < partikel.length; i++) {
+        for (let j = i + 1; j < partikel.length; j++) {
+          const dx = partikel[i].x - partikel[j].x;
+          const dy = partikel[i].y - partikel[j].y;
+          const jarak = Math.sqrt(dx * dx + dy * dy);
+          if (jarak < 120) {
+            ctx.beginPath();
+            ctx.moveTo(partikel[i].x, partikel[i].y);
+            ctx.lineTo(partikel[j].x, partikel[j].y);
+            ctx.strokeStyle = `rgba(0, 240, 255, ${0.15 * (1 - jarak / 120)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animasiPartikel() {
+      if (!animasiAktif) return;
+      ctx.clearRect(0, 0, kanvas.width, kanvas.height);
+      partikel.forEach(p => { p.update(); p.gambar(); });
+      gambarGaris();
+      requestAnimationFrame(animasiPartikel);
+    }
+
+    window.addEventListener('resize', aturUkuranKanvas);
+    aturUkuranKanvas();
+    inisialisasiPartikel();
+    animasiPartikel();
+
+    // ===== EFEK SUARA =====
+    let suaraAktif = false;
+    const tombolSuara = document.getElementById('soundBtn');
+
+    tombolSuara.addEventListener('click', () => {
+      suaraAktif = !suaraAktif;
+      tombolSuara.textContent = suaraAktif ? '🔊' : '🔇';
+    });
+
+    function mainkanSuaraKlik() {
+      if (!suaraAktif) return;
+      try {
+        const ctxSuara = new (window.AudioContext || window.webkitAudioContext)();
+        const osilator = ctxSuara.createOscillator();
+        const gain = ctxSuara.createGain();
+        osilator.connect(gain);
+        gain.connect(ctxSuara.destination);
+        osilator.frequency.value = 600;
+        osilator.type = 'sine';
+        gain.gain.setValueAtTime(0.03, ctxSuara.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctxSuara.currentTime + 0.08);
+        osilator.start(ctxSuara.currentTime);
+        osilator.stop(ctxSuara.currentTime + 0.08);
+      } catch (e) {}
+    }
+
+    // ===== Deteksi Info Sesi =====
+    function deteksiPerangkat() {
+      const ua = navigator.userAgent;
+      if (/Mobi|Android|iPhone|iPad|iPod/i.test(ua)) {
+        if (/iPad|Tablet/i.test(ua)) return 'Tablet';
+        return 'Mobile';
+      }
+      return 'Desktop';
+    }
+
+    function deteksiBrowser() {
+      const ua = navigator.userAgent;
+      if (ua.includes('Edg/')) return 'Edge';
+      if (ua.includes('OPR/') || ua.includes('Opera')) return 'Opera';
+      if (ua.includes('Chrome')) return 'Chrome';
+      if (ua.includes('Firefox')) return 'Firefox';
+      if (ua.includes('Safari')) return 'Safari';
+      return 'Tidak diketahui';
+    }
+
+    function deteksiNegara() {
+      try {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        if (tz.includes('Jakarta') || tz.includes('Pontianak') || tz.includes('Makassar') || tz.includes('Jayapura')) return '🇮🇩 Indonesia';
+        if (tz.includes('Singapore')) return '🇸🇬 Singapore';
+        if (tz.includes('Kuala_Lumpur')) return '🇲🇾 Malaysia';
+        if (tz.includes('Bangkok')) return '🇹🇭 Thailand';
+        if (tz.includes('Manila')) return '🇵🇭 Filipina';
+        if (tz.includes('Tokyo')) return '🇯🇵 Jepang';
+        if (tz.includes('Seoul')) return '🇰🇷 Korea';
+        if (tz.includes('Shanghai') || tz.includes('Hong_Kong')) return '🇨🇳 China';
+        if (tz.includes('New_York')) return '🇺🇸 USA';
+        if (tz.includes('London')) return '🇬🇧 UK';
+        if (tz.includes('Dubai')) return '🇦🇪 UAE';
+        const kota = tz.split('/').pop().replace(/_/g, ' ');
+        return `🌍 ${kota}`;
+      } catch (e) {
+        return '🌍 Tidak diketahui';
+      }
+    }
+
+    document.getElementById('info-perangkat').textContent = deteksiPerangkat();
+    document.getElementById('info-browser').textContent = deteksiBrowser();
+    document.getElementById('info-negara').textContent = deteksiNegara();
+
+    // ===== Fungsi Tab Filter =====
+    const tabs = document.querySelectorAll('.tab');
+    const kartuTools = document.querySelectorAll('.tool-card');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        mainkanSuaraKlik();
+        tabs.forEach(t => t.classList.remove('aktif'));
+        tab.classList.add('aktif');
+        const filter = tab.dataset.filter;
+        kartuTools.forEach(kartu => {
+          if (filter === 'semua' || kartu.dataset.kategori === filter) {
+            kartu.classList.remove('hidden');
+          } else {
+            kartu.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // ===== Modal Tool =====
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalJudul = document.getElementById('modalJudul');
+    const modalDeskripsi = document.getElementById('modalDeskripsi');
+    const modalInfo = document.getElementById('modalInfo');
+    const modalBuka = document.getElementById('modalBuka');
+    const modalTutup = document.getElementById('modalTutup');
+
+    kartuTools.forEach(kartu => {
+      kartu.addEventListener('click', () => {
+        mainkanSuaraKlik();
+        const nama = kartu.dataset.nama;
+        const desc = kartu.dataset.desc;
+        const kategori = kartu.dataset.kategori;
+        const badge = kartu.querySelector('.tool-badge');
+        const status = badge ? badge.textContent : '-';
+
+        modalJudul.textContent = nama;
+        modalDeskripsi.textContent = desc;
+        modalInfo.innerHTML = `
+          <strong>Kategori:</strong> ${kategori.charAt(0).toUpperCase() + kategori.slice(1)}<br>
+          <strong>Status:</strong> ${status}
+        `;
+
+        if (status === 'VVIP') {
+          modalBuka.textContent = '⭐ Beli VVIP';
+          modalBuka.onclick = () => {
+            mainkanSuaraKlik();
+            const pesan = encodeURIComponent(
+              `Halo Admin MOONSTAR, saya mau beli VVIP untuk membuka tool: *${nama}*\n\nMohon info pembayaran ya. Terima kasih!`
+            );
+            window.open(`https://wa.me/${NOMOR_WA}?text=${pesan}`, '_blank');
+          };
+        } else {
+          modalBuka.textContent = '🚀 Buka Tool';
+          modalBuka.onclick = () => {
+            mainkanSuaraKlik();
+            alert(`Tool "${nama}" akan segera dibuka.\n\n(Integrasi tool belum tersedia di versi demo ini.)`);
+          };
+        }
+        modalOverlay.classList.add('aktif');
+      });
+    });
+
+    function tutupModal() {
+      mainkanSuaraKlik();
+      modalOverlay.classList.remove('aktif');
+    }
+
+    modalTutup.addEventListener('click', tutupModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) tutupModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') tutupModal();
+    });
+
+    // ===== Tombol Beli VVIP =====
+    document.getElementById('btnBeli').addEventListener('click', () => {
+      mainkanSuaraKlik();
+      const pesan = encodeURIComponent(
+        'Halo Admin MOONSTAR, saya ingin berlangganan *VVIP MOONSTAR* (Rp20.000 / 35 Hari).\n\nMohon info cara pembayaran & aktivasi akun ya. Terima kasih! 🙏'
+      );
+      window.open(`https://wa.me/${NOMOR_WA}?text=${pesan}`, '_blank');
+    });
+  </script>
+</body>
+</html>
