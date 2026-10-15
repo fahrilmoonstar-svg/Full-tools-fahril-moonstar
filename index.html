@@ -22,6 +22,7 @@
       --neon-hijau: #00ffb3;
       --neon-kuning: #ffd60a;
       --cinta: #f472b6;
+      --jasa: #34d399;
       --teks: #e0e7ff;
       --abu: #8892b0;
     }
@@ -130,6 +131,11 @@
       color: var(--cinta);
     }
 
+    .tab-jasa.aktif, .tab-jasa:hover {
+      border-color: var(--jasa);
+      color: var(--jasa);
+    }
+
     h2 {
       font-size: 1.2rem;
       margin: 1.5rem 0 1rem;
@@ -171,6 +177,16 @@
       box-shadow: 0 8px 25px rgba(244, 114, 182, 0.15);
     }
 
+    .tool-card.jasa-card {
+      border-color: rgba(52, 211, 153, 0.25);
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.06), rgba(0, 240, 255, 0.03));
+    }
+
+    .tool-card.jasa-card:hover {
+      border-color: var(--jasa);
+      box-shadow: 0 8px 25px rgba(52, 211, 153, 0.15);
+    }
+
     .tool-card.hidden {
       display: none !important;
     }
@@ -196,6 +212,11 @@
       background: rgba(244, 114, 182, 0.08);
     }
 
+    .jasa-tag {
+      color: var(--jasa);
+      background: rgba(52, 211, 153, 0.08);
+    }
+
     .tool-badge {
       font-size: 0.65rem;
       padding: 0.1rem 0.35rem;
@@ -209,6 +230,7 @@
     .badge-vvip { color: var(--neon-ungu); border-color: rgba(168, 85, 247, 0.3); }
     .badge-new { color: #ffd60a; border-color: rgba(255, 214, 10, 0.3); }
     .badge-special { color: var(--cinta); border-color: rgba(244, 114, 182, 0.4); }
+    .badge-jasa { color: var(--jasa); border-color: rgba(52, 211, 153, 0.4); }
 
     .tool-card h3 {
       font-size: 1rem;
@@ -311,7 +333,7 @@
   <div class="container">
     <header>
       <h1 class="logo">All Tools — MOONSTAR</h1>
-      <p class="sub-logo">Developer Fahril MOONSTAR · Semua Alat di Satu Tempat</p>
+      <p class="sub-logo">Developer Fahril MOONSTAR · Semua Alat & Layanan di Satu Tempat</p>
     </header>
 
     <div class="session-box">
@@ -328,10 +350,11 @@
       <button class="tab" data-filter="tools">Tools</button>
       <button class="tab" data-filter="visual">Visual</button>
       <button class="tab" data-filter="vault">Vault</button>
+      <button class="tab tab-jasa" data-filter="jasa">💼 Jasa</button>
       <button class="tab tab-special" data-filter="special">❤️ Khusus</button>
     </div>
 
-    <h2>🛠️ Katalog Tools</h2>
+    <h2>🛠️ Katalog Tools & Layanan</h2>
     <div class="tools-grid" id="toolsGrid">
       
       <!-- 1 -->
@@ -390,7 +413,7 @@
         <p>Cari gambar anime & reaksi</p>
       </button>
 
-      <!-- 8 — AM Preset Finder (Bisa Diklik!) -->
+      <!-- 8 — AM Preset Finder -->
       <button class="tool-card" data-kategori="downloader" data-nama="Cari Preset AM" data-desc="Cari link preset Alight Motion dari deskripsi & komentar TikTok" data-link="https://webfinderpresetam.vercel.app/">
         <span class="tool-tag">AM</span>
         <span class="tool-badge badge-siap">Siap</span>
@@ -430,7 +453,15 @@
         <p>Email sementara & aman</p>
       </button>
 
-      <!-- ✨ Spesial: Untuk Amira (Bisa Diklik!) -->
+      <!-- 💼 JASA EDIT PRESET -->
+      <button class="tool-card jasa-card" data-kategori="jasa" data-nama="Jasa Edit & Preset AM" data-desc="Malas edit? Biar sistem yang kerjakan. Preset & Editing by Fahril MOONSTAR" data-link="https://jasa-edit-eosin.vercel.app/">
+        <span class="tool-tag jasa-tag">💼 JASA</span>
+        <span class="tool-badge badge-jasa">⚡ BUKA LAYANAN</span>
+        <h3>Jasa Edit & Preset AM</h3>
+        <p>Malas edit? Biar kami yang kerjakan — Preset & Editing by Fahril MOONSTAR</p>
+      </button>
+
+      <!-- ✨ Spesial: Untuk Amira -->
       <button class="tool-card special-card" data-kategori="special" data-nama="Untuk Amira 🤍" data-desc="Selamanya & Selalu — Di Masa Depan dan Di Hati" data-link="https://untuk-amira-seven.vercel.app/">
         <div class="heart-icon">🤍</div>
         <span class="tool-tag special-tag">❤️ SPESIAL</span>
