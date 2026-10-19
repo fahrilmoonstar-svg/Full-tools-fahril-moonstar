@@ -4,54 +4,179 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>⚠️ Akses Terbatas — All Tools</title>
+  <title>⚠️ Akses Terbatas — Fahril MOONSTAR System</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --neon-blue: #00f0ff;
+      --neon-purple: #bd00ff;
+      --neon-pink: #ff2a6d;
+      --neon-yellow: #ffd54f;
+      --dark-bg: #05071a;
+      --card-bg: #0c102f;
+      --text-dim: #8a94d0;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #0a0e27;
+      font-family: 'Segoe UI', 'Orbitron', -apple-system, sans-serif;
+      background: var(--dark-bg);
       background-image:
-        radial-gradient(circle at 20% 20%, rgba(255, 82, 82, 0.12), transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(255, 213, 79, 0.08), transparent 40%);
+        linear-gradient(180deg, rgba(189, 0, 255, 0.08) 0%, transparent 45%, transparent 55%, rgba(0, 240, 255, 0.06) 100%),
+        radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(189, 0, 255, 0.08) 0%, transparent 40%),
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
       color: #fff;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      overflow-x: hidden;
+    }
+
+    /* Scanline effect */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.05) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 100;
     }
 
     .card {
-      max-width: 620px;
+      max-width: 640px;
       width: 100%;
-      background: #131a35;
-      border: 1px solid #2a3a6b;
-      border-radius: 16px;
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      animation: fadeIn 0.5s ease-out;
+      box-shadow:
+        0 0 30px rgba(0, 240, 255, 0.15),
+        0 0 60px rgba(189, 0, 255, 0.1),
+        inset 0 0 60px rgba(0, 240, 255, 0.03);
+      animation: fadeIn 0.7s ease-out;
+      position: relative;
+    }
+
+    .card::before,
+    .card::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--neon-blue);
+      z-index: 5;
+    }
+
+    .card::before {
+      top: 10px;
+      left: 10px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .card::after {
+      top: 10px;
+      right: 10px;
+      border-left: none;
+      border-bottom: none;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(30px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     .header {
-      background: linear-gradient(135deg, #1a237e, #311b92);
+      background: linear-gradient(135deg, rgba(189, 0, 255, 0.2), rgba(0, 240, 255, 0.1));
       padding: 35px 30px;
       text-align: center;
-      border-bottom: 2px solid #ff5252;
+      border-bottom: 1px solid rgba(255, 42, 109, 0.4);
       position: relative;
     }
 
+    .header::before,
     .header::after {
       content: '';
       position: absolute;
-      bottom: -2px; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #ff5252, transparent);
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-purple), transparent);
+    }
+
+    .header::before { top: 0; }
+    .header::after { bottom: 0; }
+
+    .corner-bl {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--neon-pink);
+      border-top: none;
+      border-right: none;
+    }
+
+    .corner-br {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--neon-pink);
+      border-top: none;
+      border-left: none;
+    }
+
+    .brand-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .brand {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      color: var(--neon-yellow);
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255, 213, 79, 0.5);
+    }
+
+    .brand-name {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: none;
+      position: relative;
+    }
+
+    .brand-name::before {
+      content: 'FAHRIL MOONSTAR';
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: transparent;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: blur(8px);
+      opacity: 0.6;
+      z-index: -1;
     }
 
     .header .icon {
@@ -59,191 +184,260 @@
       margin-bottom: 12px;
       display: block;
       animation: pulse 2s ease-in-out infinite;
+      filter: drop-shadow(0 0 15px rgba(255, 42, 109, 0.5));
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50%      { transform: scale(1.08); }
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255, 42, 109, 0.5)); }
+      50%      { transform: scale(1.08); filter: drop-shadow(0 0 25px rgba(255, 42, 109, 0.7)); }
     }
 
     .header h1 {
-      font-size: 1.7rem;
+      font-size: 1.6rem;
       margin-bottom: 8px;
       font-weight: 700;
       color: #fff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
 
     .header p {
       opacity: 0.85;
-      font-size: 0.95rem;
-      color: #e0e0ff;
+      font-size: 0.9rem;
+      color: var(--text-dim);
     }
 
-    .brand {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #ffd54f;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-    .body { padding: 30px; }
+    .body { padding: 30px; position: relative; }
 
     .body h2 {
-      font-size: 1.05rem;
-      color: #ffd54f;
+      font-size: 1rem;
+      color: var(--neon-blue);
       margin-bottom: 12px;
-      margin-top: 22px;
+      margin-top: 24px;
       display: flex;
       align-items: center;
       gap: 8px;
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+      letter-spacing: 1px;
     }
 
     .body h2:first-child { margin-top: 0; }
 
     .body p {
-      color: #b0b8d4;
-      font-size: 0.93rem;
-      line-height: 1.7;
+      color: var(--text-dim);
+      font-size: 0.92rem;
+      line-height: 1.8;
       margin-bottom: 12px;
     }
 
     .body p strong { color: #fff; }
 
     .info-box {
-      background: #0d1330;
-      border-left: 3px solid #ffd54f;
-      padding: 14px 18px;
-      border-radius: 6px;
+      background: rgba(5, 7, 26, 0.7);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-left: 3px solid var(--neon-yellow);
+      padding: 18px 20px;
+      border-radius: 2px;
       font-size: 0.85rem;
-      color: #b0b8d4;
-      margin: 16px 0;
+      color: var(--text-dim);
+      margin: 20px 0;
       font-family: 'Courier New', monospace;
-      line-height: 1.9;
+      line-height: 2;
       overflow-x: auto;
+      position: relative;
     }
 
-    .info-box strong { color: #ffd54f; }
-    .status-blocked { color: #ff5252; font-weight: 700; }
+    .info-box::before {
+      content: '▶ SYSTEM_LOG';
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      background: var(--card-bg);
+      padding: 0 8px;
+      font-size: 0.7rem;
+      color: var(--neon-yellow);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .info-box strong { color: var(--neon-blue); }
+    .status-blocked { 
+      color: var(--neon-pink); 
+      font-weight: 700;
+      text-shadow: 0 0 8px rgba(255, 42, 109, 0.5);
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
 
     .actions {
       display: flex;
-      gap: 12px;
+      gap: 15px;
       flex-wrap: wrap;
-      margin-top: 26px;
+      margin-top: 30px;
     }
 
     .btn {
-      padding: 13px 24px;
+      padding: 14px 24px;
       border: none;
-      border-radius: 8px;
+      border-radius: 2px;
       font-size: 0.95rem;
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       text-align: center;
-      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      transition: all 0.3s ease;
       flex: 1;
       min-width: 140px;
       font-family: inherit;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transform: translateY(-3px);
     }
 
-    .btn:active { transform: translateY(0); }
-
     .btn-primary {
-      background: linear-gradient(135deg, #ff5252, #c62828);
+      background: linear-gradient(135deg, var(--neon-pink), #9e1c50);
       color: #fff;
+      box-shadow: 0 0 15px rgba(255, 42, 109, 0.4);
+      border: 1px solid transparent;
     }
 
     .btn-primary:hover {
-      box-shadow: 0 8px 20px rgba(255, 82, 82, 0.4);
+      box-shadow: 0 0 25px rgba(255, 42, 109, 0.6);
+      border-color: var(--neon-pink);
     }
 
     .btn-secondary {
-      background: #1a2347;
-      color: #b0b8d4;
-      border: 1px solid #2a3a6b;
+      background: transparent;
+      color: var(--neon-blue);
+      border: 1px solid rgba(0, 240, 255, 0.5);
+      box-shadow: inset 0 0 0 rgba(0, 240, 255, 0);
     }
 
     .btn-secondary:hover {
-      background: #222c54;
+      background: rgba(0, 240, 255, 0.08);
+      box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.15), 0 0 15px rgba(0, 240, 255, 0.2);
+      border-color: var(--neon-blue);
       color: #fff;
     }
 
     .footer {
       text-align: center;
-      padding: 18px;
-      font-size: 0.78rem;
-      color: #6b7394;
-      border-top: 1px solid #2a3a6b;
-      background: #0d1330;
+      padding: 22px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      border-top: 1px solid rgba(0, 240, 255, 0.15);
+      background: rgba(5, 7, 26, 0.5);
+      position: relative;
     }
 
-    .footer .moon { color: #ffd54f; }
+    .footer .moon { 
+      color: var(--neon-yellow); 
+      text-shadow: 0 0 8px rgba(255, 213, 79, 0.4);
+    }
+
+    .footer .developer {
+      color: var(--neon-blue);
+      font-weight: 600;
+      text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
+    }
 
     .footer .tagline {
-      margin-top: 6px;
+      margin-top: 8px;
       display: inline-block;
       font-style: italic;
-      color: #8a92b8;
+      color: #6b77aa;
+      font-size: 0.75rem;
     }
 
     @media (max-width: 480px) {
-      .header { padding: 28px 20px; }
-      .header h1 { font-size: 1.4rem; }
-      .body { padding: 22px; }
+      .header { padding: 25px 18px; }
+      .brand-name { font-size: 1.4rem; }
+      .header h1 { font-size: 1.3rem; }
+      .body { padding: 22px 18px; }
       .actions { flex-direction: column; }
       .btn { width: 100%; }
     }
   </style>
+  <!-- Tambahan font cyberpunk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="card">
     <div class="header">
       <span class="icon">🛡️</span>
-      <div class="brand">🌙 Fahril MOONSTAR</div>
-      <h1>Akses Terbatas</h1>
-      <p>Halaman ini muncul karena sistem mendeteksi aktivitas tidak biasa</p>
+      
+      <div class="brand-container">
+        <div class="brand">S Y S T E M &nbsp; P R O T E C T I O N</div>
+        <div class="brand-name">FAHRIL MOONSTAR</div>
+      </div>
+      
+      <h1>⚠️ AKSES TERBATAS</h1>
+      <p>System Access Restricted — Security Protocol Activated</p>
+      <div class="corner-bl"></div>
+      <div class="corner-br"></div>
     </div>
 
     <div class="body">
-      <h2>🔍 Mengapa saya melihat halaman ini?</h2>
+      <h2>🔍 MENGAPA HALAMAN INI MUNCUL?</h2>
       <p>
-        Sistem keamanan <strong>All Tools</strong> mendeteksi bahwa koneksi Anda
-        berasal dari jaringan yang mencurigakan, atau terdapat aktivitas otomatis
-        (bot) yang melanggar batas penggunaan.
+        <strong>Sistem Keamanan Fahril MOONSTAR</strong> mendeteksi bahwa koneksi Anda berasal dari jaringan yang mencurigakan, 
+        atau terdapat aktivitas otomatis yang melanggar protokol keamanan.
       </p>
 
       <div class="info-box">
         <strong>Reference ID:</strong> <span id="ref-id">—</span><br>
         <strong>Timestamp:</strong> <span id="timestamp">—</span><br>
-        <strong>Status:</strong> <span class="status-blocked">BLOCKED</span>
+        <strong>Developer:</strong> Fahril MOONSTAR<br>
+        <strong>Status Sistem:</strong> <span class="status-blocked">ACCESS DENIED</span>
       </div>
 
-      <h2>✅ Yang bisa Anda lakukan</h2>
+      <h2>✅ LANGKAH YANG BISA DILAKUKAN</h2>
       <p>
-        <strong>1.</strong> Muat ulang halaman jika ini kesalahan.<br>
-        <strong>2.</strong> Nonaktifkan VPN/Proxy sementara.<br>
-        <strong>3.</strong> Hubungi admin dengan menyertakan Reference ID.
+        <strong>•</strong> Muat ulang halaman jika ini adalah kesalahan sistem<br>
+        <strong>•</strong> Nonaktifkan VPN / Proxy sebelum mengakses kembali<br>
+        <strong>•</strong> Tunggu beberapa menit lalu coba akses ulang<br>
+        <strong>•</strong> Hubungi Developer dengan menyertakan Reference ID di atas
       </p>
 
       <div class="actions">
-        <button onclick="location.reload()" class="btn btn-primary">🔄 Coba Lagi</button>
-        <a href="/" class="btn btn-secondary">🏠 Kembali ke Beranda</a>
+        <button onclick="location.reload()" class="btn btn-primary">🔄 COBA AKSES ULANG</button>
+        <a href="/" class="btn btn-secondary">◀ KEMBALI KE BERANDA</a>
       </div>
     </div>
 
     <div class="footer">
-      <span class="moon">🌙</span> © <span id="year"></span> Fahril MOONSTAR — All Tools
+      <span class="moon">🌙</span> © <span id="year"></span> 
+      <span class="developer">Fahril MOONSTAR</span> — Developer & Creator
       <br>
-      <span class="tagline">Selamanya &amp; Selalu — Di Masa Depan dan Di Hati</span>
+      <span class="tagline">"Selamanya & Selalu — Di Masa Depan dan Di Hati"</span>
     </div>
   </div>
 
@@ -254,7 +448,7 @@
       for (let i = 0; i < 8; i++) {
         id += chars.charAt(Math.floor(Math.random() * chars.length));
       }
-      return 'REF-' + id;
+      return 'FM-' + new Date().toISOString().slice(2, 8).replace('-', '') + '-' + id;
     }
 
     let refId = sessionStorage.getItem('blockRefId');

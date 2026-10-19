@@ -23,6 +23,7 @@
       --neon-kuning: #ffd60a;
       --cinta: #f472b6;
       --jasa: #34d399;
+      --merah: #ff5252;
       --teks: #e0e7ff;
       --abu: #8892b0;
     }
@@ -104,6 +105,32 @@
       margin-right: 6px;
     }
 
+    /* ===== TOMBOL BLOCK PAGE (BARU) ===== */
+    .btn-block-page {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.9rem;
+      background: linear-gradient(135deg, rgba(255, 82, 82, 0.15), rgba(198, 40, 40, 0.15));
+      border: 1px solid rgba(255, 82, 82, 0.4);
+      border-radius: 6px;
+      color: var(--merah);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: inherit;
+    }
+
+    .btn-block-page:hover {
+      background: linear-gradient(135deg, rgba(255, 82, 82, 0.3), rgba(198, 40, 40, 0.3));
+      border-color: var(--merah);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 82, 82, 0.25);
+      color: #fff;
+    }
+
     .tabs {
       display: flex;
       flex-wrap: wrap;
@@ -134,6 +161,19 @@
     .tab-jasa.aktif, .tab-jasa:hover {
       border-color: var(--jasa);
       color: var(--jasa);
+    }
+
+    /* ===== TAB BLOCK PAGE (BARU) ===== */
+    .tab-block {
+      border-color: rgba(255, 82, 82, 0.3);
+      color: var(--merah);
+      margin-left: auto;
+    }
+
+    .tab-block:hover {
+      border-color: var(--merah);
+      color: #fff;
+      background: rgba(255, 82, 82, 0.15);
     }
 
     h2 {
@@ -341,6 +381,8 @@
       <div class="session-item"><strong>💻 Perangkat:</strong> Online</div>
       <div class="session-item"><strong>🌐 Browser:</strong> Semua</div>
       <div class="session-item"><span class="status-online"></span><strong>Status:</strong> Aktif</div>
+      <!-- ===== JEMBATAN 1: Tombol ke 403.html ===== -->
+      <a href="/403.html" class="btn-block-page">🔒 Akses Terbatas</a>
     </div>
 
     <div class="tabs" id="tabs">
@@ -352,6 +394,8 @@
       <button class="tab" data-filter="vault">Vault</button>
       <button class="tab tab-jasa" data-filter="jasa">💼 Jasa</button>
       <button class="tab tab-special" data-filter="special">❤️ Khusus</button>
+      <!-- ===== JEMBATAN 2: Tab ke 403.html ===== -->
+      <a href="/403.html" class="tab tab-block" style="text-decoration:none;">🔒 Akses Terbatas</a>
     </div>
 
     <h2>🛠️ Katalog Tools & Layanan</h2>
@@ -548,8 +592,11 @@
       }
     });
 
-    // Fungsi Tab Filter
+    // Fungsi Tab Filter (khusus .tab dengan data-filter)
     tabs.forEach(tab => {
+      // Lewati tab yang bukan filter (misal tab-block yang berupa link)
+      if (!tab.getAttribute('data-filter')) return;
+
       tab.addEventListener('click', function() {
         tabs.forEach(t => t.classList.remove('aktif'));
         this.classList.add('aktif');
