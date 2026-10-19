@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>⚠️ Akses Terbatas — All Tools</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0a0e27;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 82, 82, 0.12), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(255, 213, 79, 0.08), transparent 40%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      max-width: 620px;
+      width: 100%;
+      background: #131a35;
+      border: 1px solid #2a3a6b;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1a237e, #311b92);
+      padding: 35px 30px;
+      text-align: center;
+      border-bottom: 2px solid #ff5252;
+      position: relative;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff5252, transparent);
+    }
+
+    .header .icon {
+      font-size: 3.5rem;
+      margin-bottom: 12px;
+      display: block;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.08); }
+    }
+
+    .header h1 {
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .header p {
+      opacity: 0.85;
+      font-size: 0.95rem;
+      color: #e0e0ff;
+    }
+
+    .brand {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #ffd54f;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .body { padding: 30px; }
+
+    .body h2 {
+      font-size: 1.05rem;
+      color: #ffd54f;
+      margin-bottom: 12px;
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .body h2:first-child { margin-top: 0; }
+
+    .body p {
+      color: #b0b8d4;
+      font-size: 0.93rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .body p strong { color: #fff; }
+
+    .info-box {
+      background: #0d1330;
+      border-left: 3px solid #ffd54f;
+      padding: 14px 18px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #b0b8d4;
+      margin: 16px 0;
+      font-family: 'Courier New', monospace;
+      line-height: 1.9;
+      overflow-x: auto;
+    }
+
+    .info-box strong { color: #ffd54f; }
+    .status-blocked { color: #ff5252; font-weight: 700; }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .btn {
+      padding: 13px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      flex: 1;
+      min-width: 140px;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff5252, #c62828);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 20px rgba(255, 82, 82, 0.4);
+    }
+
+    .btn-secondary {
+      background: #1a2347;
+      color: #b0b8d4;
+      border: 1px solid #2a3a6b;
+    }
+
+    .btn-secondary:hover {
+      background: #222c54;
+      color: #fff;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 18px;
+      font-size: 0.78rem;
+      color: #6b7394;
+      border-top: 1px solid #2a3a6b;
+      background: #0d1330;
+    }
+
+    .footer .moon { color: #ffd54f; }
+
+    .footer .tagline {
+      margin-top: 6px;
+      display: inline-block;
+      font-style: italic;
+      color: #8a92b8;
+    }
+
+    @media (max-width: 480px) {
+      .header { padding: 28px 20px; }
+      .header h1 { font-size: 1.4rem; }
+      .body { padding: 22px; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <span class="icon">🛡️</span>
+      <div class="brand">🌙 Fahril MOONSTAR</div>
+      <h1>Akses Terbatas</h1>
+      <p>Halaman ini muncul karena sistem mendeteksi aktivitas tidak biasa</p>
+    </div>
+
+    <div class="body">
+      <h2>🔍 Mengapa saya melihat halaman ini?</h2>
+      <p>
+        Sistem keamanan <strong>All Tools</strong> mendeteksi bahwa koneksi Anda
+        berasal dari jaringan yang mencurigakan, atau terdapat aktivitas otomatis
+        (bot) yang melanggar batas penggunaan.
+      </p>
+
+      <div class="info-box">
+        <strong>Reference ID:</strong> <span id="ref-id">—</span><br>
+        <strong>Timestamp:</strong> <span id="timestamp">—</span><br>
+        <strong>Status:</strong> <span class="status-blocked">BLOCKED</span>
+      </div>
+
+      <h2>✅ Yang bisa Anda lakukan</h2>
+      <p>
+        <strong>1.</strong> Muat ulang halaman jika ini kesalahan.<br>
+        <strong>2.</strong> Nonaktifkan VPN/Proxy sementara.<br>
+        <strong>3.</strong> Hubungi admin dengan menyertakan Reference ID.
+      </p>
+
+      <div class="actions">
+        <button onclick="location.reload()" class="btn btn-primary">🔄 Coba Lagi</button>
+        <a href="/" class="btn btn-secondary">🏠 Kembali ke Beranda</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span class="moon">🌙</span> © <span id="year"></span> Fahril MOONSTAR — All Tools
+      <br>
+      <span class="tagline">Selamanya &amp; Selalu — Di Masa Depan dan Di Hati</span>
+    </div>
+  </div>
+
+  <script>
+    function generateRefId() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let id = '';
+      for (let i = 0; i < 8; i++) {
+        id += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return 'REF-' + id;
+    }
+
+    let refId = sessionStorage.getItem('blockRefId');
+    if (!refId) {
+      refId = generateRefId();
+      sessionStorage.setItem('blockRefId', refId);
+    }
+
+    document.getElementById('ref-id').textContent = refId;
+    document.getElementById('timestamp').textContent =
+      new Date().toLocaleString('id-ID', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
