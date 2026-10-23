@@ -12,7 +12,6 @@
       box-sizing: border-box;
       font-family: 'Orbitron', 'Segoe UI', system-ui, sans-serif;
     }
-
     :root {
       --bg: #050714;
       --card: #0f1229;
@@ -27,7 +26,6 @@
       --teks: #e0e7ff;
       --abu: #8892b0;
     }
-
     body {
       background: var(--bg);
       color: var(--teks);
@@ -39,17 +37,14 @@
         radial-gradient(circle at bottom-left, rgba(0, 240, 255, 0.06) 0%, transparent 50%);
       background-attachment: fixed;
     }
-
     .container {
       max-width: 1200px;
       margin: 0 auto;
     }
-
     header {
       text-align: center;
       margin-bottom: 2rem;
     }
-
     .logo {
       font-size: 2rem;
       font-weight: 800;
@@ -61,18 +56,15 @@
       margin-bottom: 0.5rem;
       animation: gradientMove 4s ease infinite;
     }
-
     @keyframes gradientMove {
       0% { background-position: 0% center; }
       50% { background-position: 100% center; }
       100% { background-position: 0% center; }
     }
-
     .sub-logo {
       color: var(--abu);
       font-size: 0.9rem;
     }
-
     .session-box {
       background: rgba(15, 18, 41, 0.6);
       border: 1px solid rgba(0, 240, 255, 0.15);
@@ -85,16 +77,13 @@
       align-items: center;
       justify-content: space-between;
     }
-
     .session-item {
       font-size: 0.85rem;
       color: #cbd5e1;
     }
-
     .session-item strong {
       color: var(--neon-biru);
     }
-
     .status-online {
       display: inline-block;
       width: 10px;
@@ -104,8 +93,6 @@
       box-shadow: 0 0 8px var(--neon-hijau);
       margin-right: 6px;
     }
-
-    /* ===== TOMBOL BLOCK PAGE (BARU) ===== */
     .btn-block-page {
       display: inline-flex;
       align-items: center;
@@ -122,7 +109,6 @@
       transition: all 0.3s;
       font-family: inherit;
     }
-
     .btn-block-page:hover {
       background: linear-gradient(135deg, rgba(255, 82, 82, 0.3), rgba(198, 40, 40, 0.3));
       border-color: var(--merah);
@@ -130,14 +116,12 @@
       box-shadow: 0 6px 20px rgba(255, 82, 82, 0.25);
       color: #fff;
     }
-
     .tabs {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
     }
-
     .tab {
       padding: 0.5rem 1rem;
       background: rgba(15, 18, 41, 0.6);
@@ -147,48 +131,39 @@
       cursor: pointer;
       transition: all 0.3s;
     }
-
     .tab.aktif, .tab:hover {
       border-color: var(--neon-biru);
       color: var(--neon-biru);
     }
-
     .tab-special.aktif, .tab-special:hover {
       border-color: var(--cinta);
       color: var(--cinta);
     }
-
     .tab-jasa.aktif, .tab-jasa:hover {
       border-color: var(--jasa);
       color: var(--jasa);
     }
-
-    /* ===== TAB BLOCK PAGE (BARU) ===== */
     .tab-block {
       border-color: rgba(255, 82, 82, 0.3);
       color: var(--merah);
       margin-left: auto;
     }
-
     .tab-block:hover {
       border-color: var(--merah);
       color: #fff;
       background: rgba(255, 82, 82, 0.15);
     }
-
     h2 {
       font-size: 1.2rem;
       margin: 1.5rem 0 1rem;
       color: white;
     }
-
     .tools-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1rem;
       margin-bottom: 3rem;
     }
-
     .tool-card {
       background: linear-gradient(135deg, rgba(15, 18, 41, 0.7), rgba(26, 31, 66, 0.4));
       border-radius: 10px;
@@ -199,43 +174,35 @@
       text-align: left;
       color: inherit;
     }
-
     .tool-card:hover {
       transform: translateY(-4px);
       border-color: var(--neon-ungu);
       box-shadow: 0 8px 25px rgba(168, 85, 247, 0.1);
     }
-
     .tool-card.special-card {
       border-color: rgba(244, 114, 182, 0.3);
       text-align: center;
       background: linear-gradient(135deg, rgba(244, 114, 182, 0.08), rgba(168, 85, 247, 0.05));
     }
-
     .tool-card.special-card:hover {
       border-color: var(--cinta);
       box-shadow: 0 8px 25px rgba(244, 114, 182, 0.15);
     }
-
     .tool-card.jasa-card {
       border-color: rgba(52, 211, 153, 0.25);
       background: linear-gradient(135deg, rgba(52, 211, 153, 0.06), rgba(0, 240, 255, 0.03));
     }
-
     .tool-card.jasa-card:hover {
       border-color: var(--jasa);
       box-shadow: 0 8px 25px rgba(52, 211, 153, 0.15);
     }
-
     .tool-card.hidden {
       display: none !important;
     }
-
     .heart-icon {
       font-size: 2rem;
       margin-bottom: 0.5rem;
     }
-
     .tool-tag {
       font-size: 0.65rem;
       color: var(--neon-biru);
@@ -246,17 +213,14 @@
       display: inline-block;
       margin-bottom: 0.3rem;
     }
-
     .special-tag {
       color: var(--cinta);
       background: rgba(244, 114, 182, 0.08);
     }
-
     .jasa-tag {
       color: var(--jasa);
       background: rgba(52, 211, 153, 0.08);
     }
-
     .tool-badge {
       font-size: 0.65rem;
       padding: 0.1rem 0.35rem;
@@ -265,25 +229,21 @@
       display: inline-block;
       margin-bottom: 0.5rem;
     }
-
     .badge-siap { color: #00ffb3; border-color: rgba(0, 255, 179, 0.3); }
     .badge-vvip { color: var(--neon-ungu); border-color: rgba(168, 85, 247, 0.3); }
     .badge-new { color: #ffd60a; border-color: rgba(255, 214, 10, 0.3); }
     .badge-special { color: var(--cinta); border-color: rgba(244, 114, 182, 0.4); }
     .badge-jasa { color: var(--jasa); border-color: rgba(52, 211, 153, 0.4); }
-
     .tool-card h3 {
       font-size: 1rem;
       margin: 0.5rem 0;
       color: white;
     }
-
     .tool-card p {
       font-size: 0.8rem;
       color: var(--abu);
       line-height: 1.5;
     }
-
     footer {
       text-align: center;
       margin-top: 3rem;
@@ -292,8 +252,6 @@
       color: var(--abu);
       font-size: 0.8rem;
     }
-
-    /* MODAL */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -304,11 +262,9 @@
       justify-content: center;
       padding: 1rem;
     }
-
     .modal-overlay.aktif {
       display: flex;
     }
-
     .modal {
       background: linear-gradient(135deg, rgba(15, 18, 41, 0.95), rgba(26, 31, 66, 0.9));
       border-radius: 12px;
@@ -317,17 +273,14 @@
       width: 100%;
       border: 1px solid var(--neon-ungu);
     }
-
     .modal h3 {
       color: white;
       margin-bottom: 0.5rem;
     }
-
     .modal p {
       color: var(--abu);
       margin-bottom: 1rem;
     }
-
     .modal-info {
       background: rgba(0, 0, 0, 0.25);
       padding: 0.75rem;
@@ -336,12 +289,10 @@
       color: var(--abu);
       margin-bottom: 1rem;
     }
-
     .modal-actions {
       display: flex;
       gap: 0.75rem;
     }
-
     .btn-modal {
       flex: 1;
       padding: 0.65rem;
@@ -351,40 +302,33 @@
       font-weight: 600;
       transition: all 0.2s;
     }
-
     .btn-primary {
       background: linear-gradient(90deg, var(--neon-biru), var(--neon-ungu));
       color: white;
     }
-
     .btn-secondary {
       background: rgba(30, 34, 68, 0.8);
       color: var(--teks);
       border: 1px solid rgba(0, 240, 255, 0.15);
     }
-
     .btn-modal:hover {
       transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
-
   <div class="container">
     <header>
       <h1 class="logo">All Tools — MOONSTAR</h1>
       <p class="sub-logo">Developer Fahril MOONSTAR · Semua Alat & Layanan di Satu Tempat</p>
     </header>
-
     <div class="session-box">
       <div class="session-item"><strong>📍 Negara:</strong> Indonesia</div>
       <div class="session-item"><strong>💻 Perangkat:</strong> Online</div>
       <div class="session-item"><strong>🌐 Browser:</strong> Semua</div>
       <div class="session-item"><span class="status-online"></span><strong>Status:</strong> Aktif</div>
-      <!-- ===== JEMBATAN 1: Tombol ke 403.html ===== -->
       <a href="/403.html" class="btn-block-page">🔒 Akses Terbatas</a>
     </div>
-
     <div class="tabs" id="tabs">
       <button class="tab aktif" data-filter="semua">Semua</button>
       <button class="tab" data-filter="downloader">Downloader</button>
@@ -394,10 +338,8 @@
       <button class="tab" data-filter="vault">Vault</button>
       <button class="tab tab-jasa" data-filter="jasa">💼 Jasa</button>
       <button class="tab tab-special" data-filter="special">❤️ Khusus</button>
-      <!-- ===== JEMBATAN 2: Tab ke 403.html ===== -->
       <a href="/403.html" class="tab tab-block" style="text-decoration:none;">🔒 Akses Terbatas</a>
     </div>
-
     <h2>🛠️ Katalog Tools & Layanan</h2>
     <div class="tools-grid" id="toolsGrid">
       
@@ -408,7 +350,6 @@
         <h3>Baca Komik Full</h3>
         <p>Manga, manhwa, manhua + pembaca bawaan</p>
       </button>
-
       <!-- 2 -->
       <button class="tool-card" data-kategori="maker" data-nama="MOONSTAR Avatar Studio" data-desc="Buat avatar SVG unik dengan puluhan gaya & editor visual">
         <span class="tool-tag">SVG</span>
@@ -416,7 +357,6 @@
         <h3>MOONSTAR Avatar Studio</h3>
         <p>Buat avatar SVG unik dengan puluhan gaya</p>
       </button>
-
       <!-- 3 -->
       <button class="tool-card" data-kategori="maker" data-nama="HTML → MP4 Renderer" data-desc="Ubah HTML/WebGL/Three.js jadi video MP4 langsung di perangkat">
         <span class="tool-tag">VIDEO</span>
@@ -424,7 +364,6 @@
         <h3>HTML → MP4 Renderer</h3>
         <p>Ubah HTML/WebGL jadi video MP4</p>
       </button>
-
       <!-- 4 -->
       <button class="tool-card" data-kategori="visual" data-nama="MOONSTAR Image Vectorizer" data-desc="Ubah PNG/JPG menjadi SVG secara privat langsung di browser">
         <span class="tool-tag">VECTOR</span>
@@ -432,7 +371,6 @@
         <h3>Image Vectorizer</h3>
         <p>Ubah PNG/JPG jadi SVG vektor</p>
       </button>
-
       <!-- 5 -->
       <button class="tool-card" data-kategori="maker" data-nama="SVG → XML Converter" data-desc="Konversi SVG ke XML Alight Motion">
         <span class="tool-tag">AM</span>
@@ -440,7 +378,6 @@
         <h3>SVG → XML Converter</h3>
         <p>Konversi SVG ke XML Alight Motion</p>
       </button>
-
       <!-- 6 -->
       <button class="tool-card" data-kategori="tools" data-nama="Prompt Generator AI" data-desc="Analisis gambar → jadi prompt profesional">
         <span class="tool-tag">AI</span>
@@ -448,7 +385,6 @@
         <h3>Prompt Generator AI</h3>
         <p>Analisis gambar dengan AI → jadi prompt</p>
       </button>
-
       <!-- 7 -->
       <button class="tool-card" data-kategori="vault" data-nama="MOONSTAR Anime Discover" data-desc="Cari gambar anime, artis, dan GIF reaksi">
         <span class="tool-tag">ANIME</span>
@@ -456,15 +392,13 @@
         <h3>Anime Discover</h3>
         <p>Cari gambar anime & reaksi</p>
       </button>
-
-      <!-- 8 — AM Preset Finder -->
+      <!-- 8 -->
       <button class="tool-card" data-kategori="downloader" data-nama="Cari Preset AM" data-desc="Cari link preset Alight Motion dari deskripsi & komentar TikTok" data-link="https://webfinderpresetam.vercel.app/">
         <span class="tool-tag">AM</span>
         <span class="tool-badge badge-siap">Siap</span>
         <h3>Cari Preset AM</h3>
         <p>Cari preset langsung dari link TikTok</p>
       </button>
-
       <!-- 9 -->
       <button class="tool-card" data-kategori="tools" data-nama="MOONSTAR Multi-AI" data-desc="Chat, gambar, audio — banyak AI dalam satu tempat">
         <span class="tool-tag">AI</span>
@@ -472,7 +406,6 @@
         <h3>Multi-AI Hub</h3>
         <p>Akses berbagai AI dalam satu tempat</p>
       </button>
-
       <!-- 10 -->
       <button class="tool-card" data-kategori="tools" data-nama="Safelinku Bypass" data-desc="Dapatkan link asli dari Safelinku">
         <span class="tool-tag">BYPASS</span>
@@ -480,7 +413,6 @@
         <h3>Safelinku Bypass</h3>
         <p>Dapatkan link asli secara otomatis</p>
       </button>
-
       <!-- 11 -->
       <button class="tool-card" data-kategori="visual" data-nama="MOONSTAR AI Image" data-desc="Buat gambar AI langsung dari browser">
         <span class="tool-tag">AI</span>
@@ -488,7 +420,6 @@
         <h3>AI Image Generator</h3>
         <p>Buat gambar AI dengan satu klik</p>
       </button>
-
       <!-- 12 -->
       <button class="tool-card" data-kategori="tools" data-nama="GenMail — Temp Mail" data-desc="Buat email sementara dengan aman">
         <span class="tool-tag">MAIL</span>
@@ -496,7 +427,13 @@
         <h3>GenMail — Temp Mail</h3>
         <p>Email sementara & aman</p>
       </button>
-
+      <!-- 🔵 CYBER CHAT RILL (BARU) -->
+      <button class="tool-card" data-kategori="tools" data-nama="CYBER CHAT RILL" data-desc="Platform komunikasi masa depan — aman, cepat, terhubung langsung" data-link="https://cyber-chat-rill.vercel.app/#/">
+        <span class="tool-tag">CHAT</span>
+        <span class="tool-badge badge-new">NEW</span>
+        <h3>CYBER CHAT RILL</h3>
+        <p>Platform komunikasi masa depan — aman & cepat</p>
+      </button>
       <!-- 💼 JASA EDIT PRESET -->
       <button class="tool-card jasa-card" data-kategori="jasa" data-nama="Jasa Edit & Preset AM" data-desc="Malas edit? Biar sistem yang kerjakan. Preset & Editing by Fahril MOONSTAR" data-link="https://jasa-edit-eosin.vercel.app/">
         <span class="tool-tag jasa-tag">💼 JASA</span>
@@ -504,7 +441,6 @@
         <h3>Jasa Edit & Preset AM</h3>
         <p>Malas edit? Biar kami yang kerjakan — Preset & Editing by Fahril MOONSTAR</p>
       </button>
-
       <!-- ✨ Spesial: Untuk Amira -->
       <button class="tool-card special-card" data-kategori="special" data-nama="Untuk Amira 🤍" data-desc="Selamanya & Selalu — Di Masa Depan dan Di Hati" data-link="https://untuk-amira-seven.vercel.app/">
         <div class="heart-icon">🤍</div>
@@ -513,16 +449,13 @@
         <h3>Untuk Amira 🤍</h3>
         <p>Selamanya & Selalu — Di Masa Depan dan Di Hati</p>
       </button>
-
     </div>
-
     <footer>
       <p>All Tools MOONSTAR — Dibuat dengan 💫 oleh Fahril MOONSTAR</p>
       <p>Bebas dipakai & dibagikan ✨</p>
     </footer>
   </div>
-
-  <!-- MODAL -->
+  
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
       <h3 id="modalJudul">Nama Tool</h3>
@@ -534,7 +467,7 @@
       </div>
     </div>
   </div>
-
+  
   <script>
     const kartuTools = document.querySelectorAll('.tool-card');
     const tabs = document.querySelectorAll('.tab');
@@ -544,16 +477,13 @@
     const modalInfo = document.getElementById('modalInfo');
     const modalBuka = document.getElementById('modalBuka');
     const modalTutup = document.getElementById('modalTutup');
-
     let linkAktif = '';
-
-    // Klik kartu tool
+    
     kartuTools.forEach(kartu => {
       kartu.addEventListener('click', function() {
         const nama = this.getAttribute('data-nama');
         const desc = this.getAttribute('data-desc');
         const link = this.getAttribute('data-link');
-
         modalJudul.textContent = nama;
         modalDeskripsi.textContent = desc;
         
@@ -569,8 +499,7 @@
         modalOverlay.classList.add('aktif');
       });
     });
-
-    // Tombol Buka
+    
     modalBuka.addEventListener('click', function() {
       if (linkAktif) {
         window.open(linkAktif, '_blank');
@@ -579,30 +508,23 @@
       }
       modalOverlay.classList.remove('aktif');
     });
-
-    // Tombol Tutup
+    
     modalTutup.addEventListener('click', function() {
       modalOverlay.classList.remove('aktif');
     });
-
-    // Klik luar modal untuk tutup
+    
     modalOverlay.addEventListener('click', function(e) {
       if (e.target === modalOverlay) {
         modalOverlay.classList.remove('aktif');
       }
     });
-
-    // Fungsi Tab Filter (khusus .tab dengan data-filter)
+    
     tabs.forEach(tab => {
-      // Lewati tab yang bukan filter (misal tab-block yang berupa link)
       if (!tab.getAttribute('data-filter')) return;
-
       tab.addEventListener('click', function() {
         tabs.forEach(t => t.classList.remove('aktif'));
         this.classList.add('aktif');
-
         const filter = this.getAttribute('data-filter');
-
         kartuTools.forEach(kartu => {
           const kategori = kartu.getAttribute('data-kategori');
           if (filter === 'semua' || kategori === filter) {
@@ -614,6 +536,5 @@
       });
     });
   </script>
-
 </body>
 </html>
