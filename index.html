@@ -41,6 +41,65 @@
       max-width: 1200px;
       margin: 0 auto;
     }
+    /* === LAYAR LOGIN === */
+    #loginScreen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .login-box {
+      background: rgba(15, 18, 41, 0.8);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(0, 240, 255, 0.08);
+    }
+    .login-box h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--neon-biru), var(--neon-ungu), var(--neon-pink));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .login-box p { color: var(--abu); margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .login-box input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      margin: 0.5rem 0;
+      background: rgba(5, 7, 20, 0.6);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      color: var(--teks);
+      border-radius: 6px;
+      outline: none;
+      font-size: 0.95rem;
+    }
+    .login-box input:focus { border-color: var(--neon-biru); box-shadow: 0 0 8px rgba(0, 240, 255, 0.2); }
+    .login-box button {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 0.8rem;
+      background: linear-gradient(90deg, var(--neon-biru), var(--neon-ungu));
+      border: none;
+      color: white;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+    .login-box button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 240, 255, 0.2); }
+    .error { color: var(--merah); margin-top: 1rem; font-size: 0.85rem; min-height: 1.2rem; }
+
+    /* === HALAMAN UTAMA === */
+    #mainScreen { display: none; }
     header {
       text-align: center;
       margin-bottom: 2rem;
@@ -73,9 +132,15 @@
       margin-bottom: 1.5rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem 1.5rem;
+      gap: 0.75rem 1rem;
       align-items: center;
       justify-content: space-between;
+    }
+    .session-left, .session-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: center;
     }
     .session-item {
       font-size: 0.85rem;
@@ -84,6 +149,16 @@
     .session-item strong {
       color: var(--neon-biru);
     }
+    .role-badge {
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-owner { background: rgba(255, 46, 182, 0.1); color: var(--neon-pink); border: 1px solid rgba(255, 46, 182, 0.3); }
+    .badge-admin { background: rgba(0, 240, 255, 0.1); color: var(--neon-biru); border: 1px solid rgba(0, 240, 255, 0.3); }
+    .badge-member { background: rgba(0, 255, 179, 0.1); color: var(--neon-hijau); border: 1px solid rgba(0, 255, 179, 0.3); }
     .status-online {
       display: inline-block;
       width: 10px;
@@ -93,23 +168,19 @@
       box-shadow: 0 0 8px var(--neon-hijau);
       margin-right: 6px;
     }
-    .btn-block-page {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
+    .btn-logout {
       padding: 0.45rem 0.9rem;
       background: linear-gradient(135deg, rgba(255, 82, 82, 0.15), rgba(198, 40, 40, 0.15));
       border: 1px solid rgba(255, 82, 82, 0.4);
       border-radius: 6px;
       color: var(--merah);
-      text-decoration: none;
       font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s;
       font-family: inherit;
     }
-    .btn-block-page:hover {
+    .btn-logout:hover {
       background: linear-gradient(135deg, rgba(255, 82, 82, 0.3), rgba(198, 40, 40, 0.3));
       border-color: var(--merah);
       transform: translateY(-2px);
@@ -142,16 +213,6 @@
     .tab-jasa.aktif, .tab-jasa:hover {
       border-color: var(--jasa);
       color: var(--jasa);
-    }
-    .tab-block {
-      border-color: rgba(255, 82, 82, 0.3);
-      color: var(--merah);
-      margin-left: auto;
-    }
-    .tab-block:hover {
-      border-color: var(--merah);
-      color: #fff;
-      background: rgba(255, 82, 82, 0.15);
     }
     h2 {
       font-size: 1.2rem;
@@ -317,224 +378,369 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1 class="logo">All Tools — MOONSTAR</h1>
-      <p class="sub-logo">Developer Fahril MOONSTAR · Semua Alat & Layanan di Satu Tempat</p>
-    </header>
-    <div class="session-box">
+
+<!-- ================== LAYAR LOGIN ================== -->
+<div id="loginScreen">
+  <div class="login-box">
+    <h1>All Tools — MOONSTAR</h1>
+    <p>Masuk untuk mengakses semua alat & layanan</p>
+    <input type="text" id="username" placeholder="USERNAME" autocomplete="off">
+    <input type="password" id="password" placeholder="KATA SANDI">
+    <button id="btnLogin">MASUK SISTEM</button>
+    <div class="error" id="errorMsg"></div>
+  </div>
+</div>
+
+<!-- ================== HALAMAN UTAMA ================== -->
+<div id="mainScreen" class="container">
+  <header>
+    <h1 class="logo">All Tools — MOONSTAR</h1>
+    <p class="sub-logo">Developer Fahril MOONSTAR · Semua Alat & Layanan di Satu Tempat</p>
+  </header>
+
+  <div class="session-box">
+    <div class="session-left">
       <div class="session-item"><strong>📍 Negara:</strong> Indonesia</div>
       <div class="session-item"><strong>💻 Perangkat:</strong> Online</div>
       <div class="session-item"><strong>🌐 Browser:</strong> Semua</div>
       <div class="session-item"><span class="status-online"></span><strong>Status:</strong> Aktif</div>
-      <a href="/403.html" class="btn-block-page">🔒 Akses Terbatas</a>
     </div>
-    <div class="tabs" id="tabs">
-      <button class="tab aktif" data-filter="semua">Semua</button>
-      <button class="tab" data-filter="downloader">Downloader</button>
-      <button class="tab" data-filter="maker">Maker</button>
-      <button class="tab" data-filter="tools">Tools</button>
-      <button class="tab" data-filter="visual">Visual</button>
-      <button class="tab" data-filter="vault">Vault</button>
-      <button class="tab tab-jasa" data-filter="jasa">💼 Jasa</button>
-      <button class="tab tab-special" data-filter="special">❤️ Khusus</button>
-      <a href="/403.html" class="tab tab-block" style="text-decoration:none;">🔒 Akses Terbatas</a>
-    </div>
-    <h2>🛠️ Katalog Tools & Layanan</h2>
-    <div class="tools-grid" id="toolsGrid">
-      
-      <!-- 1 -->
-      <button class="tool-card" data-kategori="downloader" data-nama="Baca Komik Full" data-desc="Manga, manhwa, manhua + pembaca bawaan">
-        <span class="tool-tag">MANGA</span>
-        <span class="tool-badge badge-siap">Siap</span>
-        <h3>Baca Komik Full</h3>
-        <p>Manga, manhwa, manhua + pembaca bawaan</p>
-      </button>
-      <!-- 2 -->
-      <button class="tool-card" data-kategori="maker" data-nama="MOONSTAR Avatar Studio" data-desc="Buat avatar SVG unik dengan puluhan gaya & editor visual">
-        <span class="tool-tag">SVG</span>
-        <span class="tool-badge badge-siap">Siap</span>
-        <h3>MOONSTAR Avatar Studio</h3>
-        <p>Buat avatar SVG unik dengan puluhan gaya</p>
-      </button>
-      <!-- 3 -->
-      <button class="tool-card" data-kategori="maker" data-nama="HTML → MP4 Renderer" data-desc="Ubah HTML/WebGL/Three.js jadi video MP4 langsung di perangkat">
-        <span class="tool-tag">VIDEO</span>
-        <span class="tool-badge badge-siap">Siap</span>
-        <h3>HTML → MP4 Renderer</h3>
-        <p>Ubah HTML/WebGL jadi video MP4</p>
-      </button>
-      <!-- 4 -->
-      <button class="tool-card" data-kategori="visual" data-nama="MOONSTAR Image Vectorizer" data-desc="Ubah PNG/JPG menjadi SVG secara privat langsung di browser">
-        <span class="tool-tag">VECTOR</span>
-        <span class="tool-badge badge-vvip">VVIP</span>
-        <h3>Image Vectorizer</h3>
-        <p>Ubah PNG/JPG jadi SVG vektor</p>
-      </button>
-      <!-- 5 -->
-      <button class="tool-card" data-kategori="maker" data-nama="SVG → XML Converter" data-desc="Konversi SVG ke XML Alight Motion">
-        <span class="tool-tag">AM</span>
-        <span class="tool-badge badge-vvip">VVIP</span>
-        <h3>SVG → XML Converter</h3>
-        <p>Konversi SVG ke XML Alight Motion</p>
-      </button>
-      <!-- 6 -->
-      <button class="tool-card" data-kategori="tools" data-nama="Prompt Generator AI" data-desc="Analisis gambar → jadi prompt profesional">
-        <span class="tool-tag">AI</span>
-        <span class="tool-badge badge-siap">Siap</span>
-        <h3>Prompt Generator AI</h3>
-        <p>Analisis gambar dengan AI → jadi prompt</p>
-      </button>
-      <!-- 7 -->
-      <button class="tool-card" data-kategori="vault" data-nama="MOONSTAR Anime Discover" data-desc="Cari gambar anime, artis, dan GIF reaksi">
-        <span class="tool-tag">ANIME</span>
-        <span class="tool-badge badge-new">NEW</span>
-        <h3>Anime Discover</h3>
-        <p>Cari gambar anime & reaksi</p>
-      </button>
-      <!-- 8 -->
-      <button class="tool-card" data-kategori="downloader" data-nama="Cari Preset AM" data-desc="Cari link preset Alight Motion dari deskripsi & komentar TikTok" data-link="https://webfinderpresetam.vercel.app/">
-        <span class="tool-tag">AM</span>
-        <span class="tool-badge badge-siap">Siap</span>
-        <h3>Cari Preset AM</h3>
-        <p>Cari preset langsung dari link TikTok</p>
-      </button>
-      <!-- 9 -->
-      <button class="tool-card" data-kategori="tools" data-nama="MOONSTAR Multi-AI" data-desc="Chat, gambar, audio — banyak AI dalam satu tempat">
-        <span class="tool-tag">AI</span>
-        <span class="tool-badge badge-vvip">VVIP</span>
-        <h3>Multi-AI Hub</h3>
-        <p>Akses berbagai AI dalam satu tempat</p>
-      </button>
-      <!-- 10 -->
-      <button class="tool-card" data-kategori="tools" data-nama="Safelinku Bypass" data-desc="Dapatkan link asli dari Safelinku">
-        <span class="tool-tag">BYPASS</span>
-        <span class="tool-badge badge-siap">Siap</span>
-        <h3>Safelinku Bypass</h3>
-        <p>Dapatkan link asli secara otomatis</p>
-      </button>
-      <!-- 11 -->
-      <button class="tool-card" data-kategori="visual" data-nama="MOONSTAR AI Image" data-desc="Buat gambar AI langsung dari browser">
-        <span class="tool-tag">AI</span>
-        <span class="tool-badge badge-siap">Siap</span>
-        <h3>AI Image Generator</h3>
-        <p>Buat gambar AI dengan satu klik</p>
-      </button>
-      <!-- 12 -->
-      <button class="tool-card" data-kategori="tools" data-nama="GenMail — Temp Mail" data-desc="Buat email sementara dengan aman">
-        <span class="tool-tag">MAIL</span>
-        <span class="tool-badge badge-siap">Siap</span>
-        <h3>GenMail — Temp Mail</h3>
-        <p>Email sementara & aman</p>
-      </button>
-      <!-- 🔵 CYBER CHAT RILL (BARU) -->
-      <button class="tool-card" data-kategori="tools" data-nama="CYBER CHAT RILL" data-desc="Platform komunikasi masa depan — aman, cepat, terhubung langsung" data-link="https://cyber-chat-rill.vercel.app/#/">
-        <span class="tool-tag">CHAT</span>
-        <span class="tool-badge badge-new">NEW</span>
-        <h3>CYBER CHAT RILL</h3>
-        <p>Platform komunikasi masa depan — aman & cepat</p>
-      </button>
-      <!-- 💼 JASA EDIT PRESET -->
-      <button class="tool-card jasa-card" data-kategori="jasa" data-nama="Jasa Edit & Preset AM" data-desc="Malas edit? Biar sistem yang kerjakan. Preset & Editing by Fahril MOONSTAR" data-link="https://jasa-edit-eosin.vercel.app/">
-        <span class="tool-tag jasa-tag">💼 JASA</span>
-        <span class="tool-badge badge-jasa">⚡ BUKA LAYANAN</span>
-        <h3>Jasa Edit & Preset AM</h3>
-        <p>Malas edit? Biar kami yang kerjakan — Preset & Editing by Fahril MOONSTAR</p>
-      </button>
-      <!-- ✨ Spesial: Untuk Amira -->
-      <button class="tool-card special-card" data-kategori="special" data-nama="Untuk Amira 🤍" data-desc="Selamanya & Selalu — Di Masa Depan dan Di Hati" data-link="https://untuk-amira-seven.vercel.app/">
-        <div class="heart-icon">🤍</div>
-        <span class="tool-tag special-tag">❤️ SPESIAL</span>
-        <span class="tool-badge badge-special">✨ Hanya untuk Amira</span>
-        <h3>Untuk Amira 🤍</h3>
-        <p>Selamanya & Selalu — Di Masa Depan dan Di Hati</p>
-      </button>
-    </div>
-    <footer>
-      <p>All Tools MOONSTAR — Dibuat dengan 💫 oleh Fahril MOONSTAR</p>
-      <p>Bebas dipakai & dibagikan ✨</p>
-    </footer>
-  </div>
-  
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <h3 id="modalJudul">Nama Tool</h3>
-      <p id="modalDeskripsi">Deskripsi</p>
-      <div class="modal-info" id="modalInfo"></div>
-      <div class="modal-actions">
-        <button class="btn-modal btn-primary" id="modalBuka">🚀 Buka</button>
-        <button class="btn-modal btn-secondary" id="modalTutup">Tutup</button>
+    <div class="session-right">
+      <div class="session-item">
+        <strong>Halo, </strong><span id="userName">User</span>
+        <span id="userRoleBadge" class="role-badge badge-member">MEMBER</span>
       </div>
+      <button class="btn-logout" id="btnLogout">KELUAR</button>
     </div>
   </div>
-  
-  <script>
-    const kartuTools = document.querySelectorAll('.tool-card');
-    const tabs = document.querySelectorAll('.tab');
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalJudul = document.getElementById('modalJudul');
-    const modalDeskripsi = document.getElementById('modalDeskripsi');
-    const modalInfo = document.getElementById('modalInfo');
-    const modalBuka = document.getElementById('modalBuka');
-    const modalTutup = document.getElementById('modalTutup');
-    let linkAktif = '';
+
+  <div class="tabs" id="tabs">
+    <button class="tab aktif" data-filter="semua">Semua</button>
+    <button class="tab" data-filter="downloader">Downloader</button>
+    <button class="tab" data-filter="maker">Maker</button>
+    <button class="tab" data-filter="tools">Tools</button>
+    <button class="tab" data-filter="visual">Visual</button>
+    <button class="tab" data-filter="vault">Vault</button>
+    <button class="tab tab-jasa" data-filter="jasa">💼 Jasa</button>
+    <button class="tab tab-special" data-filter="special">❤️ Khusus</button>
+  </div>
+
+  <h2>🛠️ Katalog Tools & Layanan</h2>
+  <div class="tools-grid" id="toolsGrid">
     
+    <!-- 1 -->
+    <button class="tool-card" data-kategori="downloader" data-nama="Baca Komik Full" data-desc="Manga, manhwa, manhua + pembaca bawaan">
+      <span class="tool-tag">MANGA</span>
+      <span class="tool-badge badge-siap">Siap</span>
+      <h3>Baca Komik Full</h3>
+      <p>Manga, manhwa, manhua + pembaca bawaan</p>
+    </button>
+    <!-- 2 -->
+    <button class="tool-card" data-kategori="maker" data-nama="MOONSTAR Avatar Studio" data-desc="Buat avatar SVG unik dengan puluhan gaya & editor visual">
+      <span class="tool-tag">SVG</span>
+      <span class="tool-badge badge-siap">Siap</span>
+      <h3>MOONSTAR Avatar Studio</h3>
+      <p>Buat avatar SVG unik dengan puluhan gaya</p>
+    </button>
+    <!-- 3 -->
+    <button class="tool-card" data-kategori="maker" data-nama="HTML → MP4 Renderer" data-desc="Ubah HTML/WebGL/Three.js jadi video MP4 langsung di perangkat">
+      <span class="tool-tag">VIDEO</span>
+      <span class="tool-badge badge-siap">Siap</span>
+      <h3>HTML → MP4 Renderer</h3>
+      <p>Ubah HTML/WebGL jadi video MP4</p>
+    </button>
+    <!-- 4 -->
+    <button class="tool-card" data-kategori="visual" data-nama="MOONSTAR Image Vectorizer" data-desc="Ubah PNG/JPG menjadi SVG secara privat langsung di browser">
+      <span class="tool-tag">VECTOR</span>
+      <span class="tool-badge badge-vvip">VVIP</span>
+      <h3>Image Vectorizer</h3>
+      <p>Ubah PNG/JPG jadi SVG vektor</p>
+    </button>
+    <!-- 5 -->
+    <button class="tool-card" data-kategori="maker" data-nama="SVG → XML Converter" data-desc="Konversi SVG ke XML Alight Motion">
+      <span class="tool-tag">AM</span>
+      <span class="tool-badge badge-vvip">VVIP</span>
+      <h3>SVG → XML Converter</h3>
+      <p>Konversi SVG ke XML Alight Motion</p>
+    </button>
+    <!-- 6 -->
+    <button class="tool-card" data-kategori="tools" data-nama="Prompt Generator AI" data-desc="Analisis gambar → jadi prompt profesional">
+      <span class="tool-tag">AI</span>
+      <span class="tool-badge badge-siap">Siap</span>
+      <h3>Prompt Generator AI</h3>
+      <p>Analisis gambar dengan AI → jadi prompt</p>
+    </button>
+    <!-- 7 -->
+    <button class="tool-card" data-kategori="vault" data-nama="MOONSTAR Anime Discover" data-desc="Cari gambar anime, artis, dan GIF reaksi">
+      <span class="tool-tag">ANIME</span>
+      <span class="tool-badge badge-new">NEW</span>
+      <h3>Anime Discover</h3>
+      <p>Cari gambar anime & reaksi</p>
+    </button>
+    <!-- 8 -->
+    <button class="tool-card" data-kategori="downloader" data-nama="Cari Preset AM" data-desc="Cari link preset Alight Motion dari deskripsi & komentar TikTok" data-link="https://webfinderpresetam.vercel.app/">
+      <span class="tool-tag">AM</span>
+      <span class="tool-badge badge-siap">Siap</span>
+      <h3>Cari Preset AM</h3>
+      <p>Cari preset langsung dari link TikTok</p>
+    </button>
+    <!-- 9 -->
+    <button class="tool-card" data-kategori="tools" data-nama="MOONSTAR Multi-AI" data-desc="Chat, gambar, audio — banyak AI dalam satu tempat">
+      <span class="tool-tag">AI</span>
+      <span class="tool-badge badge-vvip">VVIP</span>
+      <h3>Multi-AI Hub</h3>
+      <p>Akses berbagai AI dalam satu tempat</p>
+    </button>
+    <!-- 10 -->
+    <button class="tool-card" data-kategori="tools" data-nama="Safelinku Bypass" data-desc="Dapatkan link asli dari Safelinku">
+      <span class="tool-tag">BYPASS</span>
+      <span class="tool-badge badge-siap">Siap</span>
+      <h3>Safelinku Bypass</h3>
+      <p>Dapatkan link asli secara otomatis</p>
+    </button>
+    <!-- 11 -->
+    <button class="tool-card" data-kategori="visual" data-nama="MOONSTAR AI Image" data-desc="Buat gambar AI langsung dari browser">
+      <span class="tool-tag">AI</span>
+      <span class="tool-badge badge-siap">Siap</span>
+      <h3>AI Image Generator</h3>
+      <p>Buat gambar AI dengan satu klik</p>
+    </button>
+    <!-- 12 -->
+    <button class="tool-card" data-kategori="tools" data-nama="GenMail — Temp Mail" data-desc="Buat email sementara dengan aman">
+      <span class="tool-tag">MAIL</span>
+      <span class="tool-badge badge-siap">Siap</span>
+      <h3>GenMail — Temp Mail</h3>
+      <p>Email sementara & aman</p>
+    </button>
+    <!-- CYBER CHAT RILL -->
+    <button class="tool-card" data-kategori="tools" data-nama="CYBER CHAT RILL" data-desc="Platform komunikasi masa depan — aman, cepat, terhubung langsung" data-link="https://cyber-chat-rill.vercel.app/#/">
+      <span class="tool-tag">CHAT</span>
+      <span class="tool-badge badge-new">NEW</span>
+      <h3>CYBER CHAT RILL</h3>
+      <p>Platform komunikasi masa depan — aman & cepat</p>
+    </button>
+    <!-- JASA EDIT PRESET -->
+    <button class="tool-card jasa-card" data-kategori="jasa" data-nama="Jasa Edit & Preset AM" data-desc="Malas edit? Biar sistem yang kerjakan. Preset & Editing by Fahril MOONSTAR" data-link="https://jasa-edit-eosin.vercel.app/">
+      <span class="tool-tag jasa-tag">💼 JASA</span>
+      <span class="tool-badge badge-jasa">⚡ BUKA LAYANAN</span>
+      <h3>Jasa Edit & Preset AM</h3>
+      <p>Malas edit? Biar kami yang kerjakan — Preset & Editing by Fahril MOONSTAR</p>
+    </button>
+    <!-- Spesial: Untuk Amira -->
+    <button class="tool-card special-card" data-kategori="special" data-nama="Untuk Amira 🤍" data-desc="Selamanya & Selalu — Di Masa Depan dan Di Hati" data-link="https://untuk-amira-seven.vercel.app/">
+      <div class="heart-icon">🤍</div>
+      <span class="tool-tag special-tag">❤️ SPESIAL</span>
+      <span class="tool-badge badge-special">✨ Hanya untuk Amira</span>
+      <h3>Untuk Amira 🤍</h3>
+      <p>Selamanya & Selalu — Di Masa Depan dan Di Hati</p>
+    </button>
+  </div>
+
+  <footer>
+    <p>All Tools MOONSTAR — Dibuat dengan 💫 oleh Fahril MOONSTAR</p>
+    <p>Bebas dipakai & dibagikan ✨</p>
+  </footer>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3 id="modalJudul">Nama Tool</h3>
+    <p id="modalDeskripsi">Deskripsi</p>
+    <div class="modal-info" id="modalInfo"></div>
+    <div class="modal-actions">
+      <button class="btn-modal btn-primary" id="modalBuka">🚀 Buka</button>
+      <button class="btn-modal btn-secondary" id="modalTutup">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==========================================
+// 🔑 DATA AKUN
+// ==========================================
+const ACCOUNTS = {
+  "owner":  { pass: "owner123",  role: "owner",  name: "Owner Fahril" },
+  "admin":  { pass: "admin123",  role: "admin",  name: "Admin System" },
+  "luth":   { pass: "12345",     role: "admin",  name: "Luth Admin" },
+  "member1":{ pass: "member123", role: "member", name: "Pengguna Satu" },
+  "user1":  { pass: "user123",   role: "member", name: "Anggota Biasa" }
+};
+
+const SESSION_KEY = "moonstar_session";
+
+// Elemen Login
+const loginScreen = document.getElementById("loginScreen");
+const mainScreen = document.getElementById("mainScreen");
+const usernameInp = document.getElementById("username");
+const passwordInp = document.getElementById("password");
+const btnLogin = document.getElementById("btnLogin");
+const btnLogout = document.getElementById("btnLogout");
+const errorMsg = document.getElementById("errorMsg");
+const userName = document.getElementById("userName");
+const userRoleBadge = document.getElementById("userRoleBadge");
+
+let currentUserData = null;
+
+// ==========================================
+// 🔐 FUNGSI SESI
+// ==========================================
+function saveSession(user) {
+  sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
+}
+function loadSession() {
+  const saved = sessionStorage.getItem(SESSION_KEY);
+  return saved ? JSON.parse(saved) : null;
+}
+function clearSession() {
+  sessionStorage.removeItem(SESSION_KEY);
+}
+function getBadgeClass(role) {
+  switch(role) {
+    case "owner": return "badge-owner";
+    case "admin": return "badge-admin";
+    default: return "badge-member";
+  }
+}
+function getRoleLabel(role) {
+  switch(role) {
+    case "owner": return "OWNER";
+    case "admin": return "ADMIN";
+    default: return "MEMBER";
+  }
+}
+function showMainScreen(userData) {
+  loginScreen.style.display = "none";
+  mainScreen.style.display = "block";
+  userName.textContent = userData.name;
+  userRoleBadge.textContent = getRoleLabel(userData.role);
+  userRoleBadge.className = `role-badge ${getBadgeClass(userData.role)}`;
+}
+function showLoginScreen() {
+  loginScreen.style.display = "flex";
+  mainScreen.style.display = "none";
+  usernameInp.value = "";
+  passwordInp.value = "";
+  errorMsg.textContent = "";
+  currentUserData = null;
+}
+function handleLogin() {
+  const user = usernameInp.value.trim();
+  const pass = passwordInp.value.trim();
+  errorMsg.textContent = "";
+  if (!user || !pass) {
+    errorMsg.textContent = "⚠️ Isi username & kata sandi!";
+    return;
+  }
+  const account = ACCOUNTS[user];
+  if (!account) {
+    errorMsg.textContent = "❌ Pengguna tidak ditemukan!";
+    return;
+  }
+  if (account.pass !== pass) {
+    errorMsg.textContent = "❌ Kata sandi salah!";
+    return;
+  }
+  currentUserData = { username: user, ...account };
+  saveSession(currentUserData);
+  showMainScreen(currentUserData);
+}
+
+// ==========================================
+// 🛠️ FUNGSI TOOLS & MODAL
+// ==========================================
+const kartuTools = document.querySelectorAll('.tool-card');
+const tabs = document.querySelectorAll('.tab');
+const modalOverlay = document.getElementById('modalOverlay');
+const modalJudul = document.getElementById('modalJudul');
+const modalDeskripsi = document.getElementById('modalDeskripsi');
+const modalInfo = document.getElementById('modalInfo');
+const modalBuka = document.getElementById('modalBuka');
+const modalTutup = document.getElementById('modalTutup');
+let linkAktif = '';
+
+kartuTools.forEach(kartu => {
+  kartu.addEventListener('click', function() {
+    const nama = this.getAttribute('data-nama');
+    const desc = this.getAttribute('data-desc');
+    const link = this.getAttribute('data-link');
+    modalJudul.textContent = nama;
+    modalDeskripsi.textContent = desc;
+    
+    if (link) {
+      modalInfo.innerHTML = '<strong>Link:</strong> ✅ Siap dibuka di tab baru';
+      modalBuka.textContent = '🚀 Buka Sekarang';
+    } else {
+      modalInfo.innerHTML = '<strong>Status:</strong> 🚧 Segera Hadir';
+      modalBuka.textContent = '🚀 Segera Hadir';
+    }
+    
+    linkAktif = link || '';
+    modalOverlay.classList.add('aktif');
+  });
+});
+
+modalBuka.addEventListener('click', function() {
+  if (linkAktif) {
+    window.open(linkAktif, '_blank');
+  } else {
+    alert('Tool ini akan segera hadir ya! Pantau terus ✨');
+  }
+  modalOverlay.classList.remove('aktif');
+});
+
+modalTutup.addEventListener('click', function() {
+  modalOverlay.classList.remove('aktif');
+});
+
+modalOverlay.addEventListener('click', function(e) {
+  if (e.target === modalOverlay) {
+    modalOverlay.classList.remove('aktif');
+  }
+});
+
+tabs.forEach(tab => {
+  if (!tab.getAttribute('data-filter')) return;
+  tab.addEventListener('click', function() {
+    tabs.forEach(t => t.classList.remove('aktif'));
+    this.classList.add('aktif');
+    const filter = this.getAttribute('data-filter');
     kartuTools.forEach(kartu => {
-      kartu.addEventListener('click', function() {
-        const nama = this.getAttribute('data-nama');
-        const desc = this.getAttribute('data-desc');
-        const link = this.getAttribute('data-link');
-        modalJudul.textContent = nama;
-        modalDeskripsi.textContent = desc;
-        
-        if (link) {
-          modalInfo.innerHTML = '<strong>Link:</strong> ✅ Siap dibuka di tab baru';
-          modalBuka.textContent = '🚀 Buka Sekarang';
-        } else {
-          modalInfo.innerHTML = '<strong>Status:</strong> 🚧 Segera Hadir';
-          modalBuka.textContent = '🚀 Segera Hadir';
-        }
-        
-        linkAktif = link || '';
-        modalOverlay.classList.add('aktif');
-      });
-    });
-    
-    modalBuka.addEventListener('click', function() {
-      if (linkAktif) {
-        window.open(linkAktif, '_blank');
+      const kategori = kartu.getAttribute('data-kategori');
+      if (filter === 'semua' || kategori === filter) {
+        kartu.classList.remove('hidden');
       } else {
-        alert('Tool ini akan segera hadir ya! Pantau terus ✨');
-      }
-      modalOverlay.classList.remove('aktif');
-    });
-    
-    modalTutup.addEventListener('click', function() {
-      modalOverlay.classList.remove('aktif');
-    });
-    
-    modalOverlay.addEventListener('click', function(e) {
-      if (e.target === modalOverlay) {
-        modalOverlay.classList.remove('aktif');
+        kartu.classList.add('hidden');
       }
     });
-    
-    tabs.forEach(tab => {
-      if (!tab.getAttribute('data-filter')) return;
-      tab.addEventListener('click', function() {
-        tabs.forEach(t => t.classList.remove('aktif'));
-        this.classList.add('aktif');
-        const filter = this.getAttribute('data-filter');
-        kartuTools.forEach(kartu => {
-          const kategori = kartu.getAttribute('data-kategori');
-          if (filter === 'semua' || kategori === filter) {
-            kartu.classList.remove('hidden');
-          } else {
-            kartu.classList.add('hidden');
-          }
-        });
-      });
-    });
-  </script>
+  });
+});
+
+// ==========================================
+// 🚀 JALANKAN SISTEM
+// ==========================================
+window.addEventListener("load", () => {
+  const saved = loadSession();
+  if (saved && ACCOUNTS[saved.username]) {
+    currentUserData = saved;
+    showMainScreen(currentUserData);
+  } else {
+    showLoginScreen();
+  }
+});
+
+btnLogin.addEventListener("click", handleLogin);
+btnLogout.addEventListener("click", () => {
+  clearSession();
+  showLoginScreen();
+});
+
+usernameInp.addEventListener("keypress", e => {
+  if (e.key === "Enter") passwordInp.focus();
+});
+passwordInp.addEventListener("keypress", e => {
+  if (e.key === "Enter") handleLogin();
+});
+</script>
+
 </body>
 </html>
